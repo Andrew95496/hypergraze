@@ -1,4 +1,7 @@
 TODO
 
-- Restructure Code
-- Add Regex
+[2021-11-28]
+
+- [2021-11-28] - Restructure Code ø
+- [2021-11-28] - Add Regex ø
+- [2021-11-28] - ERROR HANDLING ø

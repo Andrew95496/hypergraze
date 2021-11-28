@@ -36,6 +36,8 @@ _testmain.go
 
 config/
 
+PROJECT_GUIDES/ToDo.txt
+
 ##other
 #node_modules/
 #bower_components/

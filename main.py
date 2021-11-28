@@ -14,9 +14,10 @@ def main():
         print('Not Valid URL')
         main()
     
-    user_input = input('What do you want to find: ')
-    user_regex = re.compile(user_input)
-    METACHAR = user_regex.findall(text)
+    # Regex
+    USER_INPUT = input('What do you want to find: ')
+    USER_REGEX = re.compile(USER_INPUT)
+    METACHAR = USER_REGEX.findall(text)
     print(METACHAR)
 
     CONN = None
@@ -34,7 +35,7 @@ def main():
 
         # queries
         INSERT_SCRIPT = 'insert into user_info (URL, text) values ( %s, %s);'
-        INSERT_VALUES = (user_input, METACHAR)
+        INSERT_VALUES = (USER_INPUT, METACHAR)
         CUR.execute(INSERT_SCRIPT, INSERT_VALUES)
 
         # commit
