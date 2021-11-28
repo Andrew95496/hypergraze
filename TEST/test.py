@@ -14,11 +14,11 @@ FILENAME = input('Input Filename: ')
 
 # connection to database
 CONN = psycopg2.connect(
-        host = 'localhost',
-        dbname = 'Regex',
-        user = 'postgres',
-        password = 'password',
-        port = 5432)
+        host = '#########',
+        dbname = '####',
+        user = '########',
+        password = '########',
+        port = ####)
 
 
 # Web scraping
