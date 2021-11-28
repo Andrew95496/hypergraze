@@ -1,0 +1,4 @@
+TODO
+
+- Restructure Code
+- Add Regex

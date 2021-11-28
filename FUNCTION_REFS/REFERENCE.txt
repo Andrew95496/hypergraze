@@ -26,4 +26,13 @@ finally:
         CUR.close()
     if CONN is not None:
         CONN.close()
+
+BACKUP
+# CONN = psycopg2.connect(
+#         host = 'localhost',
+#         dbname = 'Regex',
+#         user = 'postgres',
+#         password = 'password',
+#         port = 5432)
+
             
