@@ -1,7 +1,13 @@
 TODO
 
-[2021-11-28]
-
-- [2021-11-28] - Restructure Code ø
+- [2021-11-28] - Restructure Code ∆
 - [2021-11-28] - Add Regex ø
 - [2021-11-28] - ERROR HANDLING ø
+- [2021-11-28] - ADD file type to databases √ - [2021-11-28]
+- [2021-11-28] - Send files to cloud ø
+- [2021-11-28] - Asynch code ∆
+- [2021-11-28] - trackfile size ∆
+
+
+
+

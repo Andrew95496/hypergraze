@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--  
+#  .########..########..########.##......##..######..##....##.####
+#  .##.....##.##.....##.##.......##..##..##.##....##.##...##...##.
+#  .##.....##.##.....##.##.......##..##..##.##.......##..##....##.
+#  .##.....##.########..######...##..##..##..######..#####.....##.
+#  .##.....##.##...##...##.......##..##..##.......##.##..##....##.
+#  .##.....##.##....##..##.......##..##..##.##....##.##...##...##.
+#  .########..##.....##.########..###..###...######..##....##.####
+ -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- link to css -->
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/card.css" />
+    <link rel="stylesheet" href="../css/about.css" />
+    <link rel="stylesheet" href="../css/download.css">
+    <link rel="stylesheet" href="../css/contacts.css">
+
+    <!-- footer bootstrap styles -->
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"
+    />
+
+    <!-- link to site icons -->
+    <script src="https://kit.fontawesome.com/7d6c34e4f3.js" crossorigin="anonymous"></script>
+
+    <!-- links to fonts -->
+    <!-- nav fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- main section fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <title>HYPERGRAZE</title>
+  </head>
+  <body>
+    <header>
+      <!-- Your name goes here -->
+      <h1 onclick="goHome()" class="title">HYPERGRAZE</h1>
+      <!-- Your nav links go here -->
+      <ul class="menu">
+        <li class="list, btn" onclick="goHome()">Home</li>
+        <li class="list, btn" onclick="goAbout()">About</li>
+        <li class="list, btn" onclick="goDownload()">Download</li>
+        <li class="list, btn" onclick="goContacts()">Contacts</li>
+      </ul>
+    </header>
+
+    <!-- ? START HOMEPAGE -->
+    <!-- Main section -->
+    <main>
+      <section id="main-page">
+        <h1 class="section-title">EASY WEB SCRAPING</h1>
+        <div class="container">
+          <div onclick="showPageOne()" class="card">
+            <div class="card-text">
+              <h5 style="text-align: center">HOW TO</h5>
+              <img src="../STATIC_MEDIA/how_to.jpeg" alt="" />
+              <p>How to use our technology.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div onclick="showPageTwo()" class="card-text">
+              <h5 style="text-align: center">ADVANCED OPTIONS</h5>
+              <img src="../STATIC_MEDIA/adv_opts.jpeg" alt="" />
+              <p>Use these options to get exactly what you want.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div onclick="showPageThree()" class="card-text">
+              <h5 style="text-align: center">VOICE RECOGNITION</h5>
+              <img src="../STATIC_MEDIA/Voice-Recognition.png" alt="" />
+              <p>Say what you want and get it.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Card 1 Page -->
+      <section id="sub-page-1" class="hide">
+        <h1 class="sub-card-header">CARD 1 SUB PAGE</h1>
+        <p class="card-p" style="text-align: center">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste, atque.
+        </p>
+      </section>
+
+      <!-- Card 2 Page -->
+      <section id="sub-page-2" class="hide">
+        <h1 class="sub-card-header">CARD 2 SUB PAGE</h1>
+        <p class="card-p" style="text-align: center">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod, officiis.
+        </p>
+      </section>
+
+      <!-- Card 3 Page -->
+      <section id="sub-page-3" class="hide">
+        <h1 class="sub-card-header">CARD 3 SUB PAGE</h1>
+        <p class="card-p" style="text-align: center">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam, deleniti!
+        </p>
+      </section>
+      <!-- ? END HOMEPAGE -->
+
+
+
+
+
+      <!-- ? START ABOUT -->
+      <!-- About page -->
+      <section id="about-page" class="hide">
+        <h1 class="about-header">ABOUT</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea velit sit
+          culpa corrupti dolore voluptatum nemo repudiandae voluptates optio, et
+          tenetur error ab recusandae, asperiores consequuntur? Id, facere et.
+          In architecto ad, quaerat quis repellat error illum recusandae quae
+          provident, assumenda mollitia accusantium neque aspernatur quo minus
+          nesciunt ipsum perspiciatis.
+        </p>
+        <img width="500px" src="../media/about-picture.png" alt="" />
+      </section>
+      <!-- ? END ABOUT -->
+
+
+
+
+
+
+      <!-- ? download -->
+
+      <!-- download Page -->
+      <section id="download-page" class="hide">
+      <section class="download-container">
+        <h1 class="download-title">DOWNLOAD</h1>
+        <div class="container ">
+          <div onclick="showDownSub()" class="card ">
+            <div class="card-text">
+              <h5 style="text-align: center">HYPERGRAZE DOWNLOAD</h5>
+              <img src="../STATIC_MEDIA/hypergrazelogo.png" alt="" />
+              <p>Click to choose download.</p>
+              </div>
+            </div>
+          </div>
+      </section>
+    </section>
+
+      <!-- download 1Page -->
+      <section id="download-sub-page" class="hide">
+        <h1 class="sub-card-header">Download Versions</h1>
+        <p style="text-align: center; margin: 60px;"><img width="500px" class=".mg" src="../media/project-test/pexels-pixabay-161154.jpg" alt="" /></p>
+        <p class="card-p" style="text-align: center">
+          <ul class="download-versions">
+            <p>Latest Version</p>
+            <a href="#"><li>v1.2.6</li></a>
+            <p>Older Versions</p>
+            <a href=""><li>v1.2.5</li></a>
+            <a href=""><li>v1.2.4</li></a>
+          </ul>
+        </p>
+      </section>
+
+
+
+<!-- ? download End -->
+
+
+
+     <!-- ? START CONTACTS -->
+      <!-- Contacts page -->
+      <section id="contacts-page" class="hide" >
+        <h1 class="contacts-header">Contacts</h1>
+        <p class="text">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea velit sit
+        </p>
+        <ul class="social-links">
+          <a target="blank" href="https://www.facebook.com/"><li><i class="fab fa-facebook-f"></i></li></a>   
+          <a target="blank" href="https://twitter.com/?lang=en"><li><i class="fab fa-twitter"></i></li></a>
+          <a target="blank" href="https://www.snapchat.com/"><li><i class="fab fa-snapchat-ghost"></i></li></a>
+          <a target="blank" href="https://www.instagram.com/"><li><i class="fab fa-instagram-square"></i></li></a>
+        </ul>
+        <ul class="contact-links">
+          <a href="tel:##########">
+            <li>Call Us</li>
+          </a>
+          <a href="mailto:myemail@email.com">
+            <li>Email Us</li>
+          </a>
+        </ul>
+      </section>
+      <!-- ? END CONTACTS -->
+      <!-- ! end of main -->
+
+
+    </main>
+
+    <!-- footer -->
+    <div class="footer-dark">
+      <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6 col-md-3 item">
+              <h3>Services</h3>
+              <ul>
+                <li><a href="#">Web design</a></li>
+                <li><a href="#">Development</a></li>
+                <li><a href="#">Hosting</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-6 col-md-3 item">
+              <h3>About</h3>
+              <ul>
+                <li><a href="#">Company</a></li>
+                <li><a href="#">Team</a></li>
+                <li><a href="#">Careers</a></li>
+              </ul>
+            </div>
+            <div class="col-md-6 item text">
+              <h3>Company Name</h3>
+              <p>
+                Praesent sed lobortis mi. Suspendisse vel placerat ligula.
+                Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis
+                tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel
+                in justo.
+              </p>
+            </div>
+            <div class="col item social">
+              <a href="#"><i class="icon ion-social-facebook"></i></a
+              ><a href="#"><i class="icon ion-social-twitter"></i></a
+              ><a href="#"><i class="icon ion-social-snapchat"></i></a
+              ><a href="#"><i class="icon ion-social-instagram"></i></a>
+            </div>
+          </div>
+          <p class="copyright">Company Name © 2018</p>
+        </div>
+      </footer>
+    </div>
+    <script src="../javascript/index.js"></script>
+    <!-- foot jquery and bootstrap scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

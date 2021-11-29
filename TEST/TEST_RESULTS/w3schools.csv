@@ -1,0 +1,326 @@
+
+
+
+
+
+
+
+
+Python Datetime
+
+❮ Previous
+Next ❯
+
+
+Python Dates
+A date in Python is not a data type of its own, but we can import a module 
+named datetime to work with dates as date 
+objects.
+
+Example
+Import the datetime module and display the current date:
+
+  import datetimex = datetime.datetime.now()print(x)
+Try it Yourself »
+
+
+Date Output
+When we execute the code from the example above the result will be:
+
+
+
+The date contains year, month, day, hour, minute, second, and microsecond.
+The datetime module has many methods to return information about the date 
+object.
+Here are a few examples, you will learn more about them later in this 
+chapter: 
+
+Example
+Return the year and name of weekday:
+
+  import datetimex = datetime.datetime.now()print(x.year)
+  print(x.strftime("%A"))
+Try it Yourself »
+
+
+Creating Date Objects
+To create a date, we can use the datetime() class (constructor) of the
+datetime module.
+The datetime() class requires three parameters to create a date: year, 
+month, day.
+
+Example
+Create a date object:
+
+  import datetimex = datetime.datetime(2020, 5, 17)
+print(x)
+Try it Yourself »
+
+The datetime() class also takes parameters for time and timezone (hour, 
+minute, second, microsecond, tzone), but they are optional, and has a default 
+value of 0, (None for timezone).
+
+
+
+
+
+
+
+The strftime() Method
+The datetime object has a method for formatting date objects into readable strings.
+The method is called strftime(), and takes one parameter, 
+format, to specify the format of the returned string:
+
+Example
+Display the name of the month:
+
+  import datetimex = datetime.datetime(2018, 6, 1)print(x.strftime("%B"))
+Try it Yourself »
+
+A reference of all the legal format codes:
+
+
+Directive
+Description
+Example
+Try it
+
+
+%a
+Weekday, short version
+Wed
+Try it »
+
+
+%A
+Weekday, full version
+Wednesday
+Try it »
+
+
+%w
+Weekday as a number 0-6, 0 is Sunday
+3
+Try it »
+
+
+%d
+Day of month 01-31
+31
+Try it »
+
+
+%b
+Month name, short version
+Dec
+Try it »
+
+
+%B
+Month name, full version
+December
+Try it »
+
+
+%m
+Month as a number 01-12
+12
+Try it »
+
+
+%y
+Year, short version, without century
+18
+Try it »
+
+
+%Y
+Year, full version
+2018
+Try it »
+
+
+%H
+Hour 00-23
+17
+Try it »
+
+
+%I
+Hour 00-12
+05
+Try it »
+
+
+%p
+AM/PM
+PM
+Try it »
+
+
+%M
+Minute 00-59
+41
+Try it »
+
+
+%S
+Second 00-59
+08
+Try it »
+
+
+%f
+Microsecond 000000-999999
+548513
+Try it »
+
+
+%z
+UTC offset
++0100
+
+
+
+%Z
+Timezone
+CST
+
+
+
+%j
+Day number of year 001-366
+365
+Try it »
+
+
+%U
+Week number of year, Sunday as the first day of week, 00-53
+52
+Try it »
+
+
+%W
+Week number of year, Monday as the first day of week, 00-53
+52
+Try it »
+
+
+%c
+Local version of date and time
+Mon Dec 31 17:41:00 2018
+Try it »
+
+
+%C
+Century
+20
+Try it »
+
+
+%x
+Local version of date
+12/31/18
+Try it »
+
+
+%X
+Local version of time
+17:41:00
+Try it »
+
+
+%%
+A % character
+%
+Try it »
+
+
+%G
+ISO 8601 year
+2018
+Try it »
+
+
+%u
+ISO 8601 weekday (1-7)
+1
+Try it »
+
+
+%V
+ISO 8601 weeknumber (01-53)
+01
+Try it »
+
+
+
+
+❮ Previous
+Next ❯
+
+
+
+
+
+
+
+
+
+
+
+
+
+NEW
+
+We just launchedW3Schools videos
+
+Explore now
+
+
+COLOR PICKER
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get certifiedby completinga course today!
+
+
+w3schools CERTIFIED  .  2021
+
+
+Get started
+
+
+
+
+
+
+
+CODE GAME
+
+Play Game
+
+
+
+
+
+
+
+
+
+
+
+
+

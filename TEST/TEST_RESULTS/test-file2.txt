@@ -1,0 +1,1551 @@
+Stack Overflow
+About
+Products
+For Teams
+Search…
+ 
+Join Stack Overflow to learn, share knowledge, and build your career.
+
+Home
+PUBLIC
+Questions
+Tags
+Users
+COLLECTIVES
+Explore Collectives
+FIND A JOB
+Jobs
+Companies
+TEAMS
+Stack Overflow for Teams – Collaborate and share knowledge with a private group. 
+How do I list all files of a directory?
+Asked 11 years, 4 months ago
+Active 1 month ago
+Viewed 6.2m times
+
+3466
+
+
+1200
+This question's answers are a community effort. Edit existing answers to improve this post. It is not currently accepting new answers or interactions.
+How can I list all files of a directory in Python and add them to a list?
+
+python
+directory
+Share
+Follow
+edited Oct 22 '17 at 2:35
+
+Ioannis Filippidis
+8,81188 gold badges6969 silver badges101101 bronze badges
+asked Jul 8 '10 at 19:31
+
+duhhunjonn
+43.3k1111 gold badges2626 silver badges1515 bronze badges
+27
+Related to How to get a list of subdirectories – 
+rds
+ Jan 5 '12 at 9:32
+Comments disabled on deleted / locked posts / reviews
+21 Answers
+
+5458
+
+os.listdir() will get you everything that's in a directory - files and directories.
+
+If you want just files, you could either filter this down using os.path:
+
+from os import listdir
+from os.path import isfile, join
+onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+or you could use os.walk() which will yield two lists for each directory it visits - splitting into files and dirs for you. If you only want the top directory you can break the first time it yields
+
+from os import walk
+
+f = []
+for (dirpath, dirnames, filenames) in walk(mypath):
+    f.extend(filenames)
+    break
+or, shorter:
+
+from os import walk
+
+filenames = next(walk(mypath), (None, None, []))[2]  # [] if no file
+Share
+Improve this answer
+Follow
+edited Jun 9 at 3:03
+
+Yul Kang
+32922 silver badges88 bronze badges
+answered Jul 8 '10 at 21:01
+
+pycruft
+57.9k11 gold badge1616 silver badges1111 bronze badges
+114
+A bit simpler: (_, _, filenames) = walk(mypath).next() (if you are confident that the walk will return at least one value, which it should.) – 
+misterbee
+ Jul 14 '13 at 20:56 
+11
+Slight modification to store full paths: for (dirpath, dirnames, filenames) in os.walk(mypath): checksum_files.extend(os.path.join(dirpath, filename) for filename in filenames) break – 
+okigan
+ Sep 23 '13 at 21:31 
+177
+f.extend(filenames) is not actually equivalent to f = f + filenames. extend will modify f in-place, whereas adding creates a new list in a new memory location. This means extend is generally more efficient than +, but it can sometimes lead to confusion if multiple objects hold references to the list. Lastly, it's worth noting that f += filenames is equivalent to f.extend(filenames), not f = f + filenames. – 
+Benjamin Hodgson
+♦
+ Oct 22 '13 at 8:55
+36
+@misterbee, your solution is the best, just one small improvement: _, _, filenames = next(walk(mypath), (None, None, [])) – 
+bgusach
+ Mar 5 '15 at 7:36
+3
+f += filenames is equivalent to extend and not the other way around??? Jeez. – 
+Umagon
+ Jul 12 '20 at 9:18 
+Show 4 more comments
+
+2175
+
+I prefer using the glob module, as it does pattern matching and expansion.
+
+import glob
+print(glob.glob("/home/adam/*"))
+It does pattern matching intuitively
+
+import glob
+# All files ending with .txt
+print(glob.glob("/home/adam/*.txt")) 
+# All files ending with .txt with depth of 2 folder
+print(glob.glob("/home/adam/*/*.txt")) 
+It will return a list with the queried files:
+
+['/home/adam/file1.txt', '/home/adam/file2.txt', .... ]
+Share
+Improve this answer
+Follow
+edited Jun 21 at 3:11
+
+Ajeet Ganga
+7,7901010 gold badges5454 silver badges7474 bronze badges
+answered Jul 9 '10 at 18:13
+
+adamk
+40.6k66 gold badges4848 silver badges5656 bronze badges
+19
+that's a shortcut for listdir+fnmatch docs.python.org/library/fnmatch.html#fnmatch.fnmatch – 
+Stefano
+ Jul 1 '11 at 13:03 
+48
+to clarify, this does not return the "full path"; it simply returns the expansion of the glob, whatever it may be. E.g., given /home/user/foo/bar/hello.txt, then, if running in directory foo, the glob("bar/*.txt") will return bar/hello.txt. There are cases when you do in fact want the full (i.e., absolute) path; for those cases, see stackoverflow.com/questions/51520/… – 
+michael
+ Aug 16 '16 at 12:07 
+1
+Related: find files recursively with glob: stackoverflow.com/a/2186565/4561887 – 
+Gabriel Staples
+ Sep 3 '18 at 3:25
+10
+doesn't answer this question. glob.glob("*") would. – 
+Jean-François Fabre
+♦
+ May 17 '19 at 18:36
+2
+Is there a way to ensure the items returned from glob are only files? I ask regarding the instance where files could exist without extensions (or other scenarios where files and folders are indistinguishable purely from their path strings). I note this is an appropriate clarification here as the OP did not specify whether or not their files have extensions on them. – 
+aamailhot
+ Aug 11 at 21:57 
+Add a comment
+
+1327
+
+list in the current directory
+
+With listdir in os module you get the files and the folders in the current dir
+
+ import os
+
+ arr = os.listdir()
+Looking in a directory
+
+arr = os.listdir('c:\\files')
+with glob you can specify a type of file to list like this
+
+import glob
+
+txtfiles = []
+for file in glob.glob("*.txt"):
+    txtfiles.append(file)
+or
+
+mylist = [f for f in glob.glob("*.txt")]
+get the full path of only files in the current directory
+
+import os
+from os import listdir
+from os.path import isfile, join
+
+cwd = os.getcwd()
+onlyfiles = [os.path.join(cwd, f) for f in os.listdir(cwd) if 
+os.path.isfile(os.path.join(cwd, f))]
+print(onlyfiles) 
+
+['G:\\getfilesname\\getfilesname.py', 'G:\\getfilesname\\example.txt']
+Getting the full path name with os.path.abspath
+
+You get the full path in return
+
+ import os
+ files_path = [os.path.abspath(x) for x in os.listdir()]
+ print(files_path)
+ 
+ ['F:\\documenti\applications.txt', 'F:\\documenti\collections.txt']
+Walk: going through sub directories
+
+os.walk returns the root, the directories list and the files list, that is why I unpacked them in r, d, f in the for loop; it, then, looks for other files and directories in the subfolders of the root and so on until there are no subfolders.
+
+import os
+
+# Getting the current work directory (cwd)
+thisdir = os.getcwd()
+
+# r=root, d=directories, f = files
+for r, d, f in os.walk(thisdir):
+    for file in f:
+        if file.endswith(".docx"):
+            print(os.path.join(r, file))
+To go up in the directory tree
+
+# Method 1
+x = os.listdir('..')
+
+# Method 2
+x= os.listdir('/')
+Get files of a particular subdirectory with os.listdir()
+
+import os
+
+x = os.listdir("./content")
+os.walk('.') - current directory
+
+ import os
+ arr = next(os.walk('.'))[2]
+ print(arr)
+ 
+ >>> ['5bs_Turismo1.pdf', '5bs_Turismo1.pptx', 'esperienza.txt']
+next(os.walk('.')) and os.path.join('dir', 'file')
+
+ import os
+ arr = []
+ for d,r,f in next(os.walk("F:\\_python")):
+     for file in f:
+         arr.append(os.path.join(r,file))
+
+ for f in arr:
+     print(files)
+
+>>> F:\\_python\\dict_class.py
+>>> F:\\_python\\programmi.txt
+next... walk
+
+ [os.path.join(r,file) for r,d,f in next(os.walk("F:\\_python")) for file in f]
+ 
+ >>> ['F:\\_python\\dict_class.py', 'F:\\_python\\programmi.txt']
+os.walk
+
+x = [os.path.join(r,file) for r,d,f in os.walk("F:\\_python") for file in f]
+print(x)
+
+>>> ['F:\\_python\\dict.py', 'F:\\_python\\progr.txt', 'F:\\_python\\readl.py']
+os.listdir() - get only txt files
+
+ arr_txt = [x for x in os.listdir() if x.endswith(".txt")]
+ 
+Using glob to get the full path of the files
+
+from path import path
+from glob import glob
+
+x = [path(f).abspath() for f in glob("F:\\*.txt")]
+Using os.path.isfile to avoid directories in the list
+
+import os.path
+listOfFiles = [f for f in os.listdir() if os.path.isfile(f)]
+Using pathlib from Python 3.4
+
+import pathlib
+
+flist = []
+for p in pathlib.Path('.').iterdir():
+    if p.is_file():
+        print(p)
+        flist.append(p)
+With list comprehension:
+
+flist = [p for p in pathlib.Path('.').iterdir() if p.is_file()]
+Use glob method in pathlib.Path()
+
+import pathlib
+
+py = pathlib.Path().glob("*.py")
+Get all and only files with os.walk: checks only in the third element returned, i.e. the list of the files
+
+import os
+x = [i[2] for i in os.walk('.')]
+y=[]
+for t in x:
+    for f in t:
+        y.append(f)
+Get only files with next in a directory: returns only the file in the root folder
+
+ import os
+ x = next(os.walk('F://python'))[2]
+Get only directories with next and walk in a directory, because in the [1] element there are the folders only
+
+ import os
+ next(os.walk('F://python'))[1] # for the current dir use ('.')
+ 
+ >>> ['python3','others']
+Get all the subdir names with walk
+
+for r,d,f in os.walk("F:\\_python"):
+    for dirs in d:
+        print(dirs)
+os.scandir() from Python 3.5 and greater
+
+import os
+x = [f.name for f in os.scandir() if f.is_file()]
+
+# Another example with scandir (a little variation from docs.python.org)
+# This one is more efficient than os.listdir.
+# In this case, it shows the files only in the current directory
+# where the script is executed.
+
+import os
+with os.scandir() as i:
+    for entry in i:
+        if entry.is_file():
+            print(entry.name)
+Share
+Improve this answer
+Follow
+edited Oct 24 at 11:51
+answered Jan 3 '17 at 15:36
+
+PythonProgrammi
+18.9k33 gold badges3535 silver badges3333 bronze badges
+74
+This is a mish-mash of too many answers to questions not asked here. It may also be worth explaining what the caveats or recommended approaches are. I'm no better off knowing one way versus 20 ways to do the same thing unless I also know which is more appropriate to use when. – 
+cs95
+ Jan 27 '20 at 9:27
+3
+Ok, ASAP I will take a look at my answer and try to make it more clean and with more useful informations about the difference among the methods etc. – 
+PythonProgrammi
+ Jan 29 '20 at 19:56
+1
+You should not determine file's extension by checking if the filename contains a substring. That might cause many troubles. I recommend to always check if the filename ends with the particular substring. – 
+ni1ight
+ Mar 2 '20 at 14:38
+4
+Such compilations can be helpful, but this answer in particular adds no value to the existing answers. Just to give an example, [f for f in glob.glob("*.txt")] is equivalent to glob.glob("*.txt") and warrants no extra section in this write up. It is also very wordy and with lots of spacing. An improvement could be made by adding explanations or pointing out differences instead of listing yet another variant. – 
+Turun Ambartanen
+ Oct 12 '20 at 10:20
+1
+Thanks for the comment, you are right of course and I will follow your advises asap to make it more useful, maybe in these years I could make some better ansewers. Just give me some days to re-elaborate it. – 
+PythonProgrammi
+ Oct 15 '20 at 11:07
+Show 5 more comments
+
+929
+
+import os
+os.listdir("somedirectory")
+will return a list of all files and directories in "somedirectory".
+
+Share
+Improve this answer
+Follow
+edited Jul 13 '16 at 19:05
+
+csano
+12.5k22 gold badges2626 silver badges4444 bronze badges
+answered Jul 8 '10 at 19:35
+
+sepp2k
+348k5050 gold badges651651 silver badges663663 bronze badges
+12
+This returns the relative path of the files, as compared with the full path returned by glob.glob – 
+xji
+ May 17 '16 at 14:32 
+25
+@JIXiang: os.listdir() always returns mere filenames (not relative paths). What glob.glob() returns is driven by the path format of the input pattern. – 
+mklement0
+ Nov 30 '16 at 18:14 
+Add a comment
+
+178
+
+A one-line solution to get only list of files (no subdirectories):
+
+filenames = next(os.walk(path))[2]
+or absolute pathnames:
+
+paths = [os.path.join(path, fn) for fn in next(os.walk(path))[2]]
+Share
+Improve this answer
+Follow
+edited Sep 22 '19 at 20:40
+
+ohe
+3,13933 gold badges2424 silver badges4545 bronze badges
+answered Jan 18 '14 at 17:42
+
+Remi
+18.8k88 gold badges5353 silver badges4141 bronze badges
+7
+Only a one-liner if you've already import os. Seems less concise than glob() to me. – 
+ArtOfWarfare
+ Nov 28 '14 at 20:22 
+4
+problem with glob is that a folder called 'something.something' would be returned by glob('/home/adam/*.*') – 
+Remi
+ Dec 1 '14 at 9:08
+6
+On OS X, there's something called a bundle. It's a directory which should generally be treated as a file (like a .tar). Would you want those treated as a file or a directory? Using glob() would treat it as a file. Your method would treat it as a directory. – 
+ArtOfWarfare
+ Dec 1 '14 at 19:44
+Add a comment
+
+145
+
+Getting Full File Paths From a Directory and All Its Subdirectories
+
+import os
+
+def get_filepaths(directory):
+    """
+    This function will generate the file names in a directory 
+    tree by walking the tree either top-down or bottom-up. For each 
+    directory in the tree rooted at directory top (including top itself), 
+    it yields a 3-tuple (dirpath, dirnames, filenames).
+    """
+    file_paths = []  # List which will store all of the full filepaths.
+
+    # Walk the tree.
+    for root, directories, files in os.walk(directory):
+        for filename in files:
+            # Join the two strings in order to form the full filepath.
+            filepath = os.path.join(root, filename)
+            file_paths.append(filepath)  # Add it to the list.
+
+    return file_paths  # Self-explanatory.
+
+# Run the above function and store its results in a variable.   
+full_file_paths = get_filepaths("/Users/johnny/Desktop/TEST")
+The path I provided in the above function contained 3 files— two of them in the root directory, and another in a subfolder called "SUBFOLDER." You can now do things like:
+print full_file_paths which will print the list:
+
+['/Users/johnny/Desktop/TEST/file1.txt', '/Users/johnny/Desktop/TEST/file2.txt', '/Users/johnny/Desktop/TEST/SUBFOLDER/file3.dat']
+If you'd like, you can open and read the contents, or focus only on files with the extension ".dat" like in the code below:
+
+for f in full_file_paths:
+  if f.endswith(".dat"):
+    print f
+/Users/johnny/Desktop/TEST/SUBFOLDER/file3.dat
+
+Share
+Improve this answer
+Follow
+edited Sep 26 '19 at 2:29
+answered Oct 11 '13 at 0:55
+
+Johnny
+1,94811 gold badge1313 silver badges1010 bronze badges
+Add a comment
+
+92
+
+Since version 3.4 there are builtin iterators for this which are a lot more efficient than os.listdir():
+
+pathlib: New in version 3.4.
+
+>>> import pathlib
+>>> [p for p in pathlib.Path('.').iterdir() if p.is_file()]
+According to PEP 428, the aim of the pathlib library is to provide a simple hierarchy of classes to handle filesystem paths and the common operations users do over them.
+
+os.scandir(): New in version 3.5.
+
+>>> import os
+>>> [entry for entry in os.scandir('.') if entry.is_file()]
+Note that os.walk() uses os.scandir() instead of os.listdir() from version 3.5, and its speed got increased by 2-20 times according to PEP 471.
+
+Let me also recommend reading ShadowRanger's comment below.
+
+Share
+Improve this answer
+Follow
+edited May 23 '18 at 18:41
+
+Peter Mortensen
+29.1k2121 gold badges9797 silver badges124124 bronze badges
+answered Jun 18 '15 at 20:58
+
+SzieberthAdam
+3,63511 gold badge1919 silver badges3131 bronze badges
+1
+Thanks! I think it is the only solution not returning directly a list. Could use p.name instead of the first p alternatively if preferred. – 
+jeromej
+ Jun 22 '15 at 12:36
+1
+Welcome! I would prefer generating pathlib.Path() instances since they have many useful methods I would not want to waste waste. You can also call str(p) on them for path names. – 
+SzieberthAdam
+ Jul 13 '15 at 14:56 
+6
+Note: The os.scandir solution is going to be more efficient than os.listdir with an os.path.is_file check or the like, even if you need a list (so you don't benefit from lazy iteration), because os.scandir uses OS provided APIs that give you the is_file information for free as it iterates, no per-file round trip to the disk to stat them at all (on Windows, the DirEntrys get you complete stat info for free, on *NIX systems it needs to stat for info beyond is_file, is_dir, etc., but DirEntry caches on first stat for convenience). – 
+ShadowRanger
+ Nov 20 '15 at 22:38
+1
+You can also use entry.name to get only the file name, or entry.path to get its full path. No more os.path.join() all over the place. – 
+user136036
+ Mar 28 '17 at 20:26
+Add a comment
+
+62
+
+Preliminary notes
+Although there's a clear differentiation between file and directory terms in the question text, some may argue that directories are actually special files
+The statement: "all files of a directory" can be interpreted in two ways:
+All direct (or level 1) descendants only
+All descendants in the whole directory tree (including the ones in sub-directories)
+When the question was asked, I imagine that Python 2, was the LTS version, however the code samples will be run by Python 3(.5) (I'll keep them as Python 2 compliant as possible; also, any code belonging to Python that I'm going to post, is from v3.5.4 - unless otherwise specified). That has consequences related to another keyword in the question: "add them into a list":
+
+In pre Python 2.2 versions, sequences (iterables) were mostly represented by lists (tuples, sets, ...)
+In Python 2.2, the concept of generator ([Python.Wiki]: Generators) - courtesy of [Python 3]: The yield statement) - was introduced. As time passed, generator counterparts started to appear for functions that returned/worked with lists
+In Python 3, generator is the default behavior
+Not sure if returning a list is still mandatory (or a generator would do as well), but passing a generator to the list constructor, will create a list out of it (and also consume it). The example below illustrates the differences on [Python 3]: map(function, iterable, ...)
+>>> import sys
+>>> sys.version
+'2.7.10 (default, Mar  8 2016, 15:02:46) [MSC v.1600 64 bit (AMD64)]'
+>>> m = map(lambda x: x, [1, 2, 3])  # Just a dummy lambda function
+>>> m, type(m)
+([1, 2, 3], <type 'list'>)
+>>> len(m)
+3
+
+
+>>> import sys
+>>> sys.version
+'3.5.4 (v3.5.4:3f56838, Aug  8 2017, 02:17:05) [MSC v.1900 64 bit (AMD64)]'
+>>> m = map(lambda x: x, [1, 2, 3])
+>>> m, type(m)
+(<map object at 0x000001B4257342B0>, <class 'map'>)
+>>> len(m)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: object of type 'map' has no len()
+>>> lm0 = list(m)  # Build a list from the generator
+>>> lm0, type(lm0)
+([1, 2, 3], <class 'list'>)
+>>>
+>>> lm1 = list(m)  # Build a list from the same generator
+>>> lm1, type(lm1)  # Empty list now - generator already consumed
+([], <class 'list'>)
+The examples will be based on a directory called root_dir with the following structure (this example is for Win, but I'm using the same tree on Lnx as well):
+
+E:\Work\Dev\StackOverflow\q003207219>tree /f "root_dir"
+Folder PATH listing for volume Work
+Volume serial number is 00000029 3655:6FED
+E:\WORK\DEV\STACKOVERFLOW\Q003207219\ROOT_DIR
+¦   file0
+¦   file1
+¦
++---dir0
+¦   +---dir00
+¦   ¦   ¦   file000
+¦   ¦   ¦
+¦   ¦   +---dir000
+¦   ¦           file0000
+¦   ¦
+¦   +---dir01
+¦   ¦       file010
+¦   ¦       file011
+¦   ¦
+¦   +---dir02
+¦       +---dir020
+¦           +---dir0200
++---dir1
+¦       file10
+¦       file11
+¦       file12
+¦
++---dir2
+¦   ¦   file20
+¦   ¦
+¦   +---dir20
+¦           file200
+¦
++---dir3
+
+
+Solutions
+Programmatic approaches:
+[Python 3]: os.listdir(path='.')
+
+Return a list containing the names of the entries in the directory given by path. The list is in arbitrary order, and does not include the special entries '.' and '..' ...
+
+
+
+>>> import os
+>>> root_dir = "root_dir"  # Path relative to current dir (os.getcwd())
+>>>
+>>> os.listdir(root_dir)  # List all the items in root_dir
+['dir0', 'dir1', 'dir2', 'dir3', 'file0', 'file1']
+>>>
+>>> [item for item in os.listdir(root_dir) if os.path.isfile(os.path.join(root_dir, item))]  # Filter items and only keep files (strip out directories)
+['file0', 'file1']
+A more elaborate example (code_os_listdir.py):
+
+import os
+from pprint import pformat
+
+
+def _get_dir_content(path, include_folders, recursive):
+    entries = os.listdir(path)
+    for entry in entries:
+        entry_with_path = os.path.join(path, entry)
+        if os.path.isdir(entry_with_path):
+            if include_folders:
+                yield entry_with_path
+            if recursive:
+                for sub_entry in _get_dir_content(entry_with_path, include_folders, recursive):
+                    yield sub_entry
+        else:
+            yield entry_with_path
+
+
+def get_dir_content(path, include_folders=True, recursive=True, prepend_folder_name=True):
+    path_len = len(path) + len(os.path.sep)
+    for item in _get_dir_content(path, include_folders, recursive):
+        yield item if prepend_folder_name else item[path_len:]
+
+
+def _get_dir_content_old(path, include_folders, recursive):
+    entries = os.listdir(path)
+    ret = list()
+    for entry in entries:
+        entry_with_path = os.path.join(path, entry)
+        if os.path.isdir(entry_with_path):
+            if include_folders:
+                ret.append(entry_with_path)
+            if recursive:
+                ret.extend(_get_dir_content_old(entry_with_path, include_folders, recursive))
+        else:
+            ret.append(entry_with_path)
+    return ret
+
+
+def get_dir_content_old(path, include_folders=True, recursive=True, prepend_folder_name=True):
+    path_len = len(path) + len(os.path.sep)
+    return [item if prepend_folder_name else item[path_len:] for item in _get_dir_content_old(path, include_folders, recursive)]
+
+
+def main():
+    root_dir = "root_dir"
+    ret0 = get_dir_content(root_dir, include_folders=True, recursive=True, prepend_folder_name=True)
+    lret0 = list(ret0)
+    print(ret0, len(lret0), pformat(lret0))
+    ret1 = get_dir_content_old(root_dir, include_folders=False, recursive=True, prepend_folder_name=False)
+    print(len(ret1), pformat(ret1))
+
+
+if __name__ == "__main__":
+    main()
+Notes:
+
+There are two implementations:
+One that uses generators (of course here it seems useless, since I immediately convert the result to a list)
+The classic one (function names ending in _old)
+Recursion is used (to get into subdirectories)
+For each implementation there are two functions:
+One that starts with an underscore (_): "private" (should not be called directly) - that does all the work
+The public one (wrapper over previous): it just strips off the initial path (if required) from the returned entries. It's an ugly implementation, but it's the only idea that I could come with at this point
+In terms of performance, generators are generally a little bit faster (considering both creation and iteration times), but I didn't test them in recursive functions, and also I am iterating inside the function over inner generators - don't know how performance friendly is that
+Play with the arguments to get different results
+
+
+Output:
+
+(py35x64_test) E:\Work\Dev\StackOverflow\q003207219>"e:\Work\Dev\VEnvs\py35x64_test\Scripts\python.exe" "code_os_listdir.py"
+<generator object get_dir_content at 0x000001BDDBB3DF10> 22 ['root_dir\\dir0',
+ 'root_dir\\dir0\\dir00',
+ 'root_dir\\dir0\\dir00\\dir000',
+ 'root_dir\\dir0\\dir00\\dir000\\file0000',
+ 'root_dir\\dir0\\dir00\\file000',
+ 'root_dir\\dir0\\dir01',
+ 'root_dir\\dir0\\dir01\\file010',
+ 'root_dir\\dir0\\dir01\\file011',
+ 'root_dir\\dir0\\dir02',
+ 'root_dir\\dir0\\dir02\\dir020',
+ 'root_dir\\dir0\\dir02\\dir020\\dir0200',
+ 'root_dir\\dir1',
+ 'root_dir\\dir1\\file10',
+ 'root_dir\\dir1\\file11',
+ 'root_dir\\dir1\\file12',
+ 'root_dir\\dir2',
+ 'root_dir\\dir2\\dir20',
+ 'root_dir\\dir2\\dir20\\file200',
+ 'root_dir\\dir2\\file20',
+ 'root_dir\\dir3',
+ 'root_dir\\file0',
+ 'root_dir\\file1']
+11 ['dir0\\dir00\\dir000\\file0000',
+ 'dir0\\dir00\\file000',
+ 'dir0\\dir01\\file010',
+ 'dir0\\dir01\\file011',
+ 'dir1\\file10',
+ 'dir1\\file11',
+ 'dir1\\file12',
+ 'dir2\\dir20\\file200',
+ 'dir2\\file20',
+ 'file0',
+ 'file1']
+
+
+[Python 3]: os.scandir(path='.') (Python 3.5+, backport: [PyPI]: scandir)
+
+Return an iterator of os.DirEntry objects corresponding to the entries in the directory given by path. The entries are yielded in arbitrary order, and the special entries '.' and '..' are not included.
+
+Using scandir() instead of listdir() can significantly increase the performance of code that also needs file type or file attribute information, because os.DirEntry objects expose this information if the operating system provides it when scanning a directory. All os.DirEntry methods may perform a system call, but is_dir() and is_file() usually only require a system call for symbolic links; os.DirEntry.stat() always requires a system call on Unix but only requires one for symbolic links on Windows.
+
+
+
+>>> import os
+>>> root_dir = os.path.join(".", "root_dir")  # Explicitly prepending current directory
+>>> root_dir
+'.\\root_dir'
+>>>
+>>> scandir_iterator = os.scandir(root_dir)
+>>> scandir_iterator
+<nt.ScandirIterator object at 0x00000268CF4BC140>
+>>> [item.path for item in scandir_iterator]
+['.\\root_dir\\dir0', '.\\root_dir\\dir1', '.\\root_dir\\dir2', '.\\root_dir\\dir3', '.\\root_dir\\file0', '.\\root_dir\\file1']
+>>>
+>>> [item.path for item in scandir_iterator]  # Will yield an empty list as it was consumed by previous iteration (automatically performed by the list comprehension)
+[]
+>>>
+>>> scandir_iterator = os.scandir(root_dir)  # Reinitialize the generator
+>>> for item in scandir_iterator :
+...     if os.path.isfile(item.path):
+...             print(item.name)
+...
+file0
+file1
+Notes:
+
+It's similar to os.listdir
+But it's also more flexible (and offers more functionality), more Pythonic (and in some cases, faster)
+
+
+[Python 3]: os.walk(top, topdown=True, onerror=None, followlinks=False)
+
+Generate the file names in a directory tree by walking the tree either top-down or bottom-up. For each directory in the tree rooted at directory top (including top itself), it yields a 3-tuple (dirpath, dirnames, filenames).
+
+
+
+>>> import os
+>>> root_dir = os.path.join(os.getcwd(), "root_dir")  # Specify the full path
+>>> root_dir
+'E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir'
+>>>
+>>> walk_generator = os.walk(root_dir)
+>>> root_dir_entry = next(walk_generator)  # First entry corresponds to the root dir (passed as an argument)
+>>> root_dir_entry
+('E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir', ['dir0', 'dir1', 'dir2', 'dir3'], ['file0', 'file1'])
+>>>
+>>> root_dir_entry[1] + root_dir_entry[2]  # Display dirs and files (direct descendants) in a single list
+['dir0', 'dir1', 'dir2', 'dir3', 'file0', 'file1']
+>>>
+>>> [os.path.join(root_dir_entry[0], item) for item in root_dir_entry[1] + root_dir_entry[2]]  # Display all the entries in the previous list by their full path
+['E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir\\dir0', 'E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir\\dir1', 'E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir\\dir2', 'E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir\\dir3', 'E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir\\file0', 'E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir\\file1']
+>>>
+>>> for entry in walk_generator:  # Display the rest of the elements (corresponding to every subdir)
+...     print(entry)
+...
+('E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir\\dir0', ['dir00', 'dir01', 'dir02'], [])
+('E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir\\dir0\\dir00', ['dir000'], ['file000'])
+('E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir\\dir0\\dir00\\dir000', [], ['file0000'])
+('E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir\\dir0\\dir01', [], ['file010', 'file011'])
+('E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir\\dir0\\dir02', ['dir020'], [])
+('E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir\\dir0\\dir02\\dir020', ['dir0200'], [])
+('E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir\\dir0\\dir02\\dir020\\dir0200', [], [])
+('E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir\\dir1', [], ['file10', 'file11', 'file12'])
+('E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir\\dir2', ['dir20'], ['file20'])
+('E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir\\dir2\\dir20', [], ['file200'])
+('E:\\Work\\Dev\\StackOverflow\\q003207219\\root_dir\\dir3', [], [])
+Notes:
+
+Under the scenes, it uses os.scandir (os.listdir on older versions)
+It does the heavy lifting by recurring in subfolders
+
+
+[Python 3]: glob.glob(pathname, *, recursive=False) ([Python 3]: glob.iglob(pathname, *, recursive=False))
+
+Return a possibly-empty list of path names that match pathname, which must be a string containing a path specification. pathname can be either absolute (like /usr/src/Python-1.5/Makefile) or relative (like ../../Tools/*/*.gif), and can contain shell-style wildcards. Broken symlinks are included in the results (as in the shell).
+...
+Changed in version 3.5: Support for recursive globs using “**”.
+
+
+
+>>> import glob, os
+>>> wildcard_pattern = "*"
+>>> root_dir = os.path.join("root_dir", wildcard_pattern)  # Match every file/dir name
+>>> root_dir
+'root_dir\\*'
+>>>
+>>> glob_list = glob.glob(root_dir)
+>>> glob_list
+['root_dir\\dir0', 'root_dir\\dir1', 'root_dir\\dir2', 'root_dir\\dir3', 'root_dir\\file0', 'root_dir\\file1']
+>>>
+>>> [item.replace("root_dir" + os.path.sep, "") for item in glob_list]  # Strip the dir name and the path separator from begining
+['dir0', 'dir1', 'dir2', 'dir3', 'file0', 'file1']
+>>>
+>>> for entry in glob.iglob(root_dir + "*", recursive=True):
+...     print(entry)
+...
+root_dir\
+root_dir\dir0
+root_dir\dir0\dir00
+root_dir\dir0\dir00\dir000
+root_dir\dir0\dir00\dir000\file0000
+root_dir\dir0\dir00\file000
+root_dir\dir0\dir01
+root_dir\dir0\dir01\file010
+root_dir\dir0\dir01\file011
+root_dir\dir0\dir02
+root_dir\dir0\dir02\dir020
+root_dir\dir0\dir02\dir020\dir0200
+root_dir\dir1
+root_dir\dir1\file10
+root_dir\dir1\file11
+root_dir\dir1\file12
+root_dir\dir2
+root_dir\dir2\dir20
+root_dir\dir2\dir20\file200
+root_dir\dir2\file20
+root_dir\dir3
+root_dir\file0
+root_dir\file1
+Notes:
+
+Uses os.listdir
+For large trees (especially if recursive is on), iglob is preferred
+Allows advanced filtering based on name (due to the wildcard)
+
+
+[Python 3]: class pathlib.Path(*pathsegments) (Python 3.4+, backport: [PyPI]: pathlib2)
+
+>>> import pathlib
+>>> root_dir = "root_dir"
+>>> root_dir_instance = pathlib.Path(root_dir)
+>>> root_dir_instance
+WindowsPath('root_dir')
+>>> root_dir_instance.name
+'root_dir'
+>>> root_dir_instance.is_dir()
+True
+>>>
+>>> [item.name for item in root_dir_instance.glob("*")]  # Wildcard searching for all direct descendants
+['dir0', 'dir1', 'dir2', 'dir3', 'file0', 'file1']
+>>>
+>>> [os.path.join(item.parent.name, item.name) for item in root_dir_instance.glob("*") if not item.is_dir()]  # Display paths (including parent) for files only
+['root_dir\\file0', 'root_dir\\file1']
+Notes:
+
+This is one way of achieving our goal
+It's the OOP style of handling paths
+Offers lots of functionalities
+
+
+[Python 2]: dircache.listdir(path) (Python 2 only)
+
+But, according to [GitHub]: python/cpython - (2.7) cpython/Lib/dircache.py, it's just a (thin) wrapper over os.listdir with caching
+
+
+def listdir(path):
+    """List directory contents, using cache."""
+    try:
+        cached_mtime, list = cache[path]
+        del cache[path]
+    except KeyError:
+        cached_mtime, list = -1, []
+    mtime = os.stat(path).st_mtime
+    if mtime != cached_mtime:
+        list = os.listdir(path)
+        list.sort()
+    cache[path] = mtime, list
+    return list
+
+
+[man7]: OPENDIR(3) / [man7]: READDIR(3) / [man7]: CLOSEDIR(3) via [Python 3]: ctypes - A foreign function library for Python (POSIX specific)
+
+ctypes is a foreign function library for Python. It provides C compatible data types, and allows calling functions in DLLs or shared libraries. It can be used to wrap these libraries in pure Python.
+
+code_ctypes.py:
+
+#!/usr/bin/env python3
+
+import sys
+from ctypes import Structure, \
+    c_ulonglong, c_longlong, c_ushort, c_ubyte, c_char, c_int, \
+    CDLL, POINTER, \
+    create_string_buffer, get_errno, set_errno, cast
+
+
+DT_DIR = 4
+DT_REG = 8
+
+char256 = c_char * 256
+
+
+class LinuxDirent64(Structure):
+    _fields_ = [
+        ("d_ino", c_ulonglong),
+        ("d_off", c_longlong),
+        ("d_reclen", c_ushort),
+        ("d_type", c_ubyte),
+        ("d_name", char256),
+    ]
+
+LinuxDirent64Ptr = POINTER(LinuxDirent64)
+
+libc_dll = this_process = CDLL(None, use_errno=True)
+# ALWAYS set argtypes and restype for functions, otherwise it's UB!!!
+opendir = libc_dll.opendir
+readdir = libc_dll.readdir
+closedir = libc_dll.closedir
+
+
+def get_dir_content(path):
+    ret = [path, list(), list()]
+    dir_stream = opendir(create_string_buffer(path.encode()))
+    if (dir_stream == 0):
+        print("opendir returned NULL (errno: {:d})".format(get_errno()))
+        return ret
+    set_errno(0)
+    dirent_addr = readdir(dir_stream)
+    while dirent_addr:
+        dirent_ptr = cast(dirent_addr, LinuxDirent64Ptr)
+        dirent = dirent_ptr.contents
+        name = dirent.d_name.decode()
+        if dirent.d_type & DT_DIR:
+            if name not in (".", ".."):
+                ret[1].append(name)
+        elif dirent.d_type & DT_REG:
+            ret[2].append(name)
+        dirent_addr = readdir(dir_stream)
+    if get_errno():
+        print("readdir returned NULL (errno: {:d})".format(get_errno()))
+    closedir(dir_stream)
+    return ret
+
+
+def main():
+    print("{:s} on {:s}\n".format(sys.version, sys.platform))
+    root_dir = "root_dir"
+    entries = get_dir_content(root_dir)
+    print(entries)
+
+
+if __name__ == "__main__":
+    main()
+Notes:
+
+It loads the three functions from libc (loaded in the current process) and calls them (for more details check [SO]: How do I check whether a file exists without exceptions? (@CristiFati's answer) - last notes from item #4.). That would place this approach very close to the Python / C edge
+LinuxDirent64 is the ctypes representation of struct dirent64 from [man7]: dirent.h(0P) (so are the DT_ constants) from my machine: Ubtu 16 x64 (4.10.0-40-generic and libc6-dev:amd64). On other flavors/versions, the struct definition might differ, and if so, the ctypes alias should be updated, otherwise it will yield Undefined Behavior
+It returns data in the os.walk's format. I didn't bother to make it recursive, but starting from the existing code, that would be a fairly trivial task
+Everything is doable on Win as well, the data (libraries, functions, structs, constants, ...) differ
+
+
+Output:
+
+[cfati@cfati-ubtu16x64-0:~/Work/Dev/StackOverflow/q003207219]> ./code_ctypes.py
+3.5.2 (default, Nov 12 2018, 13:43:14)
+[GCC 5.4.0 20160609] on linux
+
+['root_dir', ['dir2', 'dir1', 'dir3', 'dir0'], ['file1', 'file0']]
+
+
+[ActiveState.Docs]: win32file.FindFilesW (Win specific)
+
+Retrieves a list of matching filenames, using the Windows Unicode API. An interface to the API FindFirstFileW/FindNextFileW/Find close functions.
+
+
+
+>>> import os, win32file, win32con
+>>> root_dir = "root_dir"
+>>> wildcard = "*"
+>>> root_dir_wildcard = os.path.join(root_dir, wildcard)
+>>> entry_list = win32file.FindFilesW(root_dir_wildcard)
+>>> len(entry_list)  # Don't display the whole content as it's too long
+8
+>>> [entry[-2] for entry in entry_list]  # Only display the entry names
+['.', '..', 'dir0', 'dir1', 'dir2', 'dir3', 'file0', 'file1']
+>>>
+>>> [entry[-2] for entry in entry_list if entry[0] & win32con.FILE_ATTRIBUTE_DIRECTORY and entry[-2] not in (".", "..")]  # Filter entries and only display dir names (except self and parent)
+['dir0', 'dir1', 'dir2', 'dir3']
+>>>
+>>> [os.path.join(root_dir, entry[-2]) for entry in entry_list if entry[0] & (win32con.FILE_ATTRIBUTE_NORMAL | win32con.FILE_ATTRIBUTE_ARCHIVE)]  # Only display file "full" names
+['root_dir\\file0', 'root_dir\\file1']
+Notes:
+
+win32file.FindFilesW is part of [GitHub]: mhammond/pywin32 - Python for Windows (pywin32) Extensions, which is a Python wrapper over WINAPIs
+The documentation link is from ActiveState, as I didn't find any PyWin32 official documentation
+
+
+Install some (other) third-party package that does the trick
+Most likely, will rely on one (or more) of the above (maybe with slight customizations)
+
+
+Notes:
+
+Code is meant to be portable (except places that target a specific area - which are marked) or cross:
+
+platform (Nix, Win, )
+Python version (2, 3, )
+Multiple path styles (absolute, relatives) were used across the above variants, to illustrate the fact that the "tools" used are flexible in this direction
+
+os.listdir and os.scandir use opendir / readdir / closedir ([MS.Docs]: FindFirstFileW function / [MS.Docs]: FindNextFileW function / [MS.Docs]: FindClose function) (via [GitHub]: python/cpython - (master) cpython/Modules/posixmodule.c)
+
+win32file.FindFilesW uses those (Win specific) functions as well (via [GitHub]: mhammond/pywin32 - (master) pywin32/win32/src/win32file.i)
+
+_get_dir_content (from point #1.) can be implemented using any of these approaches (some will require more work and some less)
+
+Some advanced filtering (instead of just file vs. dir) could be done: e.g. the include_folders argument could be replaced by another one (e.g. filter_func) which would be a function that takes a path as an argument: filter_func=lambda x: True (this doesn't strip out anything) and inside _get_dir_content something like: if not filter_func(entry_with_path): continue (if the function fails for one entry, it will be skipped), but the more complex the code becomes, the longer it will take to execute
+Nota bene! Since recursion is used, I must mention that I did some tests on my laptop (Win 10 x64), totally unrelated to this problem, and when the recursion level was reaching values somewhere in the (990 .. 1000) range (recursionlimit - 1000 (default)), I got StackOverflow :). If the directory tree exceeds that limit (I am not an FS expert, so I don't know if that is even possible), that could be a problem.
+I must also mention that I didn't try to increase recursionlimit because I have no experience in the area (how much can I increase it before having to also increase the stack at OS level), but in theory there will always be the possibility for failure, if the dir depth is larger than the highest possible recursionlimit (on that machine)
+
+The code samples are for demonstrative purposes only. That means that I didn't take into account error handling (I don't think there's any try / except / else / finally block), so the code is not robust (the reason is: to keep it as simple and short as possible). For production, error handling should be added as well
+
+Other approaches:
+Use Python only as a wrapper
+
+Everything is done using another technology
+That technology is invoked from Python
+The most famous flavor that I know is what I call the system administrator approach:
+
+Use Python (or any programming language for that matter) in order to execute shell commands (and parse their outputs)
+Some consider this a neat hack
+I consider it more like a lame workaround (gainarie), as the action per se is performed from shell (cmd in this case), and thus doesn't have anything to do with Python.
+Filtering (grep / findstr) or output formatting could be done on both sides, but I'm not going to insist on it. Also, I deliberately used os.system instead of subprocess.Popen.
+(py35x64_test) E:\Work\Dev\StackOverflow\q003207219>"e:\Work\Dev\VEnvs\py35x64_test\Scripts\python.exe" -c "import os;os.system(\"dir /b root_dir\")"
+dir0
+dir1
+dir2
+dir3
+file0
+file1
+In general this approach is to be avoided, since if some command output format slightly differs between OS versions/flavors, the parsing code should be adapted as well; not to mention differences between locales).
+
+Share
+Improve this answer
+Follow
+edited Mar 21 '19 at 14:14
+answered Jan 23 '18 at 3:09
+
+CristiFati
+30.2k99 gold badges4141 silver badges6767 bronze badges
+Add a comment
+
+50
+
+I really liked adamk's answer, suggesting that you use glob(), from the module of the same name. This allows you to have pattern matching with *s.
+
+But as other people pointed out in the comments, glob() can get tripped up over inconsistent slash directions. To help with that, I suggest you use the join() and expanduser() functions in the os.path module, and perhaps the getcwd() function in the os module, as well.
+
+As examples:
+
+from glob import glob
+
+# Return everything under C:\Users\admin that contains a folder called wlp.
+glob('C:\Users\admin\*\wlp')
+The above is terrible - the path has been hardcoded and will only ever work on Windows between the drive name and the \s being hardcoded into the path.
+
+from glob    import glob
+from os.path import join
+
+# Return everything under Users, admin, that contains a folder called wlp.
+glob(join('Users', 'admin', '*', 'wlp'))
+The above works better, but it relies on the folder name Users which is often found on Windows and not so often found on other OSs. It also relies on the user having a specific name, admin.
+
+from glob    import glob
+from os.path import expanduser, join
+
+# Return everything under the user directory that contains a folder called wlp.
+glob(join(expanduser('~'), '*', 'wlp'))
+This works perfectly across all platforms.
+
+Another great example that works perfectly across platforms and does something a bit different:
+
+from glob    import glob
+from os      import getcwd
+from os.path import join
+
+# Return everything under the current directory that contains a folder called wlp.
+glob(join(getcwd(), '*', 'wlp'))
+Hope these examples help you see the power of a few of the functions you can find in the standard Python library modules.
+
+Share
+Improve this answer
+Follow
+edited May 23 '17 at 11:47
+
+CommunityBot
+111 silver badge
+answered Jul 9 '14 at 11:43
+
+ArtOfWarfare
+18.5k1515 gold badges125125 silver badges183183 bronze badges
+4
+Extra glob fun: starting in Python 3.5, ** works as long as you set recursive = True. See the docs here: docs.python.org/3.5/library/glob.html#glob.glob – 
+ArtOfWarfare
+ Jan 26 '15 at 3:24
+Add a comment
+
+40
+
+def list_files(path):
+    # returns a list of names (with extension, without full path) of all files 
+    # in folder path
+    files = []
+    for name in os.listdir(path):
+        if os.path.isfile(os.path.join(path, name)):
+            files.append(name)
+    return files 
+Share
+Improve this answer
+Follow
+edited Oct 7 '14 at 18:30
+answered Jun 10 '14 at 16:16
+
+Apogentus
+5,84333 gold badges3030 silver badges3131 bronze badges
+Add a comment
+
+26
+
+If you are looking for a Python implementation of find, this is a recipe I use rather frequently:
+
+from findtools.find_files import (find_files, Match)
+
+# Recursively find all *.sh files in **/usr/bin**
+sh_files_pattern = Match(filetype='f', name='*.sh')
+found_files = find_files(path='/usr/bin', match=sh_files_pattern)
+
+for found_file in found_files:
+    print found_file
+So I made a PyPI package out of it and there is also a GitHub repository. I hope that someone finds it potentially useful for this code.
+
+Share
+Improve this answer
+Follow
+edited May 28 '17 at 23:17
+
+Peter Mortensen
+29.1k2121 gold badges9797 silver badges124124 bronze badges
+answered Apr 10 '14 at 14:09
+
+Yauhen Yakimovich
+12.6k77 gold badges5555 silver badges6464 bronze badges
+Add a comment
+
+16
+
+For greater results, you can use listdir() method of the os module along with a generator (a generator is a powerful iterator that keeps its state, remember?). The following code works fine with both versions: Python 2 and Python 3.
+
+Here's a code:
+
+import os
+
+def files(path):  
+    for file in os.listdir(path):
+        if os.path.isfile(os.path.join(path, file)):
+            yield file
+
+for file in files("."):  
+    print (file)
+The listdir() method returns the list of entries for the given directory. The method os.path.isfile() returns True if the given entry is a file. And the yield operator quits the func but keeps its current state, and it returns only the name of the entry detected as a file. All the above allows us to loop over the generator function.
+
+Share
+Improve this answer
+Follow
+edited May 17 '19 at 9:23
+
+Georgy
+7,57377 gold badges5353 silver badges6363 bronze badges
+answered Jan 9 '19 at 10:11
+
+Andy Jazz
+31.1k1111 gold badges9797 silver badges156156 bronze badges
+Add a comment
+
+12
+
+Returning a list of absolute filepaths, does not recurse into subdirectories
+
+L = [os.path.join(os.getcwd(),f) for f in os.listdir('.') if os.path.isfile(os.path.join(os.getcwd(),f))]
+Share
+Improve this answer
+Follow
+edited Dec 28 '14 at 3:27
+
+Cristian Ciupitu
+18.7k77 gold badges4848 silver badges7272 bronze badges
+answered Jun 13 '14 at 16:26
+
+The2ndSon
+30722 silver badges77 bronze badges
+2
+Note: os.path.abspath(f) would be a somewhat cheaper substitute for os.path.join(os.getcwd(),f). – 
+ShadowRanger
+ May 6 '17 at 0:14
+1
+I'd be more efficient still if you started with cwd = os.path.abspath('.'), then used cwd instead of '.' and os.getcwd() throughout to avoid loads of redundant system calls. – 
+Martijn Pieters
+♦
+ Dec 5 '18 at 10:46
+Add a comment
+
+12
+
+A wise teacher told me once that:
+
+When there are several established ways to do something, none of them is good for all cases.
+
+I will thus add a solution for a subset of the problem: quite often, we only want to check whether a file matches a start string and an end string, without going into subdirectories. We would thus like a function that returns a list of filenames, like:
+
+filenames = dir_filter('foo/baz', radical='radical', extension='.txt')
+If you care to first declare two functions, this can be done:
+
+def file_filter(filename, radical='', extension=''):
+    "Check if a filename matches a radical and extension"
+    if not filename:
+        return False
+    filename = filename.strip()
+    return(filename.startswith(radical) and filename.endswith(extension))
+
+def dir_filter(dirname='', radical='', extension=''):
+    "Filter filenames in directory according to radical and extension"
+    if not dirname:
+        dirname = '.'
+    return [filename for filename in os.listdir(dirname)
+                if file_filter(filename, radical, extension)]
+This solution could be easily generalized with regular expressions (and you might want to add a pattern argument, if you do not want your patterns to always stick to the start or end of the filename).
+
+Share
+Improve this answer
+Follow
+edited Mar 24 '19 at 7:17
+answered Mar 24 '19 at 7:07
+
+fralau
+2,41111 gold badge2222 silver badges3737 bronze badges
+Add a comment
+
+11
+
+import os
+import os.path
+
+
+def get_files(target_dir):
+    item_list = os.listdir(target_dir)
+
+    file_list = list()
+    for item in item_list:
+        item_dir = os.path.join(target_dir,item)
+        if os.path.isdir(item_dir):
+            file_list += get_files(item_dir)
+        else:
+            file_list.append(item_dir)
+    return file_list
+Here I use a recursive structure.
+
+Share
+Improve this answer
+Follow
+edited Jul 18 '18 at 13:44
+
+Andrew Rohne
+15133 silver badges1010 bronze badges
+answered Jun 19 '18 at 12:03
+
+pah8J
+72777 silver badges1515 bronze badges
+The same can be achieved just in one line with pathlib: filter(Path.is_file, Path().rglob('*')) – 
+Georgy
+ May 17 '19 at 9:37 
+Add a comment
+
+8
+
+Using generators
+
+import os
+def get_files(search_path):
+     for (dirpath, _, filenames) in os.walk(search_path):
+         for filename in filenames:
+             yield os.path.join(dirpath, filename)
+list_files = get_files('.')
+for filename in list_files:
+    print(filename)
+Share
+Improve this answer
+Follow
+edited May 17 '17 at 15:35
+answered Dec 2 '16 at 7:01
+
+shantanoo
+3,53711 gold badge2222 silver badges3535 bronze badges
+THANKS! exactly what I needed. A lot of the answers at the top are outdated and not working with Python 3.9 :) – 
+Wlad
+ Oct 14 at 8:01
+Add a comment
+
+7
+
+Another very readable variant for Python 3.4+ is using pathlib.Path.glob:
+
+from pathlib import Path
+folder = '/foo'
+[f for f in Path(folder).glob('*') if f.is_file()]
+It is simple to make more specific, e.g. only look for Python source files which are not symbolic links, also in all subdirectories:
+
+[f for f in Path(folder).glob('**/*.py') if not f.is_symlink()]
+Share
+Improve this answer
+Follow
+edited May 23 '18 at 19:25
+
+Peter Mortensen
+29.1k2121 gold badges9797 silver badges124124 bronze badges
+answered Mar 28 '18 at 12:20
+
+fhchl
+55966 silver badges1515 bronze badges
+Add a comment
+
+5
+
+For Python 2:
+
+pip install rglob
+Then do
+
+import rglob
+file_list = rglob.rglob("/home/base/dir/", "*")
+print file_list
+Share
+Improve this answer
+Follow
+edited Feb 8 at 16:00
+
+Peter Mortensen
+29.1k2121 gold badges9797 silver badges124124 bronze badges
+answered Oct 19 '18 at 2:34
+
+chris-piekarski
+94877 silver badges66 bronze badges
+2
+When an external dep can be avoided, do it. What is the added value of using an external dependency when all you need is already in the language? – 
+Eric
+ Mar 30 at 13:45
+Add a comment
+
+4
+
+Here's my general-purpose function for this. It returns a list of file paths rather than filenames since I found that to be more useful. It has a few optional arguments that make it versatile. For instance, I often use it with arguments like pattern='*.txt' or subfolders=True.
+
+import os
+import fnmatch
+
+def list_paths(folder='.', pattern='*', case_sensitive=False, subfolders=False):
+    """Return a list of the file paths matching the pattern in the specified 
+    folder, optionally including files inside subfolders.
+    """
+    match = fnmatch.fnmatchcase if case_sensitive else fnmatch.fnmatch
+    walked = os.walk(folder) if subfolders else [next(os.walk(folder))]
+    return [os.path.join(root, f)
+            for root, dirnames, filenames in walked
+            for f in filenames if match(f, pattern)]
+Share
+Improve this answer
+Follow
+answered Dec 7 '17 at 20:10
+
+MarredCheese
+11.3k55 gold badges6868 silver badges7171 bronze badges
+Add a comment
+
+3
+
+I will provide a sample one liner where sourcepath and file type can be provided as input. The code returns a list of filenames with csv extension. Use . in case all files needs to be returned. This will also recursively scans the subdirectories.
+
+[y for x in os.walk(sourcePath) for y in glob(os.path.join(x[0], '*.csv'))]
+
+Modify file extensions and source path as needed.
+
+Share
+Improve this answer
+Follow
+edited Dec 12 '17 at 5:30
+answered Dec 11 '17 at 17:51
+
+Vinodh Krishnaraju
+14711 silver badge77 bronze badges
+1
+If you are going to use glob, then just use glob('**/*.csv', recursive=True). No need to combine this with os.walk() to recurse (recursive and ** are supported since Python 3.5). – 
+Martijn Pieters
+♦
+ Dec 5 '18 at 11:09 
+Add a comment
+
+3
+
+dircache is "Deprecated since version 2.6: The dircache module has been removed in Python 3.0."
+
+import dircache
+list = dircache.listdir(pathname)
+i = 0
+check = len(list[0])
+temp = []
+count = len(list)
+while count != 0:
+  if len(list[i]) != check:
+     temp.append(list[i-1])
+     check = len(list[i])
+  else:
+    i = i + 1
+    count = count - 1
+
+print temp
+Share
+Improve this answer
+Follow
+edited May 17 '19 at 20:30
+
+Georgy
+7,57377 gold badges5353 silver badges6363 bronze badges
+answered Jul 25 '12 at 10:25
+
+shaji
+13911 silver badge33 bronze badges
+Add a comment
+Not the answer you're looking for? Browse other questions tagged python directory or ask your own question.
+The Overflow Blog
+Exploding turkeys and how not to thaw your frozen bird: Top turkey questions...
+Featured on Meta
+Reducing the weight of our footer
+Two B or not two B - Farewell, BoltClock and Bhargav!
+Linked
+29
+How to get only files in directory?
+24
+Python3 list files from particular directory
+15
+Reading all files in all directories
+20
+python : get list all *.txt files in a directory
+8
+How to list directory using Python
+6
+Automatically creating a list in Python
+7
+How to get file path + file name into a list?
+5
+How can I automatically open all text files in a given folder?
+6
+How do i use Linux terminal commands like CD and LS?
+-6
+print the directory for files in Python
+See more linked questions
+Related
+6017
+How do I merge two dictionaries in a single expression (take union of dictionaries)?
+5559
+How can I get the source directory of a Bash script from within the script itself?
+6470
+What are metaclasses in Python?
+4807
+How can I add a blank directory to a Git repository?
+3861
+Finding the index of an item in a list
+11653
+What does the "yield" keyword do?
+5000
+How can I safely create a nested directory in Python?
+4360
+How to make a flat list out of a list of lists
+6374
+How do I find all files containing specific text on Linux?
+Hot Network Questions
+How to fix Beamer missing number, treated as zero error in matrix (line 63 at the bottom)
+When and why did English stop pronouncing ‘hour’ with an [h] like its spelling still shows?
+Can an airline forcibly remove a senior citizen who is wearing a soiled adult diaper?
+95 Integra Key requires jiggling to start
+Installer won't install dishwasher due to "old" stop valve
+What are the names and purposes of these six kitchen knives?
+How to find all tutorials for Mathematica?
+1st Law of Thermodynamics in a Filament
+Translation of "for some" as existential quantifier
+Can a altered curve of spark plug finger break the engine?
+Proof that for 2n nodes of +1 and -1 position doesn't count
+I’m doubling lemon juice in a no-bake pie recipe to make it extra sour. What can I add to make it less goopy?
+Is there a reason why giant mechs have optics the size of a person instead of 'normal' sized ones?
+Shimmering Bird
+Can the spin-1/2 720° rotation trick apply to qubits?
+The grass is greener on the other side (it's a matter of perspective)
+Beginner friendly open source projects in O.R
+labels with faIcon and arrow positioning
+Amtrak: checking bags before the station opens
+Why aren't leg amputations usually done right at the knee-joint? (turkey-leg style)
+Why does light bend after travelling half of the lens?
+Custom implementation to provide an immutable range of a container without copying it
+What is this type of SSD called?
+Proper way to define functions with domain (arrow syntax)
+STACK OVERFLOW
+Questions
+Jobs
+Developer Jobs Directory
+Salary Calculator
+Help
+Mobile
+Disable Responsiveness
+PRODUCTS
+Teams
+Talent
+Advertising
+Enterprise
+COMPANY
+About
+Press
+Work Here
+Legal
+Privacy Policy
+Terms of Service
+Contact Us
+Cookie Settings
+Cookie Policy
+STACK EXCHANGE
+NETWORK
+Technology
+Culture & recreation
+Life & arts
+Science
+Professional
+Business
+API
+Data
+Blog
+Facebook
+Twitter
+LinkedIn
+Instagram
+site design / logo © 2021 Stack Exchange Inc; user contributions licensed under cc by-sa. rev 2021.11.26.40833

@@ -34,9 +34,10 @@ _testmain.go
 # mac hidden files
 .DS_Store
 
-config/
+configs/
 
-PROJECT_GUIDES/ToDo.txt
+test/
+
 
 ##other
 #node_modules/

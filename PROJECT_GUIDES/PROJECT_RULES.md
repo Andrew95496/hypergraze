@@ -71,12 +71,13 @@ ___
 - ø = not started | option + O
 - ∆ = workng on | option + J
 - √ = done | option + V
+- add finished date
 
 ```
 - [1991-01-16] - Restructure Code ∆
 - [1991-02-10] - Add Regex to main.py ø
 - [1991-02-14] - ERROR HANDLING for AttributeError in scarpe.py ∆
-- [1991-02-20] - Add parser to main.py √
+- [1991-02-20] - Add parser to main.py √ - [1991-02-25]
 
 ```
 
