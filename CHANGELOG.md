@@ -43,6 +43,7 @@ ___
     - *tab.py*
 - ***ADDED*** DATABASE/ for Postgres queries
 - ***ADDED*** website
+- ***ADDED*** a functions branch 
 
 
 
