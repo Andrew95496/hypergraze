@@ -16,12 +16,14 @@ ___
 - Date format yyyy-mm-dd
 ___
 
-## Variable Naming
+## Naming
 
-All Caps Variable:
-- USER INPUT
-- DATABASE CONNECTIONS ex. (CONN, CUR)
-- REGEX VARIABLES
+### Variables:
+
+- #### Caps:
+  - USER INPUT
+  - DATABASE CONNECTIONS ex. (CONN, CUR)
+  - REGEX VARIABLES
 
 ```python
 # Inputs
@@ -48,6 +50,8 @@ USER_REGEX = re.compile(USER_INPUT)
 METACHAR = user_regex.findall(text)
 print(METACHAR)
 ```
+- snake_case:
+  - All other Variables
 ___
 
 ## CHANGELOG.md

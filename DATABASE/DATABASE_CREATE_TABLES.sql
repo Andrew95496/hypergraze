@@ -9,6 +9,7 @@ create table user_data (
 	html_tag VARCHAR(50),
 	file_type VARCHAR(10),
 	files INT,
+	bytes INT,
 	date VARCHAR(150) NOT NULL
 
 );
@@ -19,6 +20,7 @@ create table web_data (
 	html_tag VARCHAR(50),
 	file_type VARCHAR(100),
 	results TEXT,
+	bytes INT,
 	date VARCHAR(150) NOT NULL
 
 );

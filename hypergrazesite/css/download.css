@@ -9,17 +9,35 @@
 }
 
 .download-container{
-    display: block;
+display: block;
   margin-left: auto;
   margin-right: auto;
   width: 30%;
- 
 }
 
-ul{
+.older-versions-h5{
+    margin-top: 100px;
+}
+
+#download-sub-page ul{
     text-align: center;
 }
 
 .download-versions li{
     color: blue;
 }
+
+.center {
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+  }
+
+  th{ 
+    border-bottom: 1px solid rgb(27, 27, 27);
+    font-size: 17px;
+  }
+  table .even{
+    background: rgb(221, 221, 221);
+  }
