@@ -27,7 +27,7 @@
 
 
 <!-- PROJECT LOGO -->
-<img style="text-align: center; margin-bottom: 30px;" src="../STATIC_MEDIA/LOGO_FILES/logo2.gif" alt="" />
+<p align="center" ><img style="text-align: center; margin-bottom: 30px;" src="https://user-images.githubusercontent.com/70408199/144077698-ec289091-f843-4011-9abd-789ae1503c6d.gif" alt="" /></p>
 <br />
 <div align="center">
   <pre>
