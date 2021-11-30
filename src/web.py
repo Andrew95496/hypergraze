@@ -12,8 +12,6 @@ import datetime
 from configs import config as cf
 
 
-
-
 def get_html(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE, FINDALL):
     CONN = psycopg2.connect(
             host = cf.hostname,
@@ -36,25 +34,32 @@ def get_html(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE, FINDALL):
     html = BeautifulSoup(src, 'lxml')
     print('grazing the web...')
 
+
+    # Finding all instances of HTML_TAG
     if (FINDALL == 'no'):
         results = html.find(f'{HTML_TAG}', f'{ATTR_NAME}')
 
+    # finding one instances of HTML_TAG
     elif (FINDALL != 'no'):
         results = html.find_all(f'{HTML_TAG}', f'{ATTR_NAME}')
 
     with open(f'/Users/drewskikatana/hypergraze/TEST/TEST_RESULTS/{FILENAME}.{FILETYPE}', 'w') as text_file:
             text_file.write(str(results))
 
+    # getting bytes for the file
     bytes = os.path.getsize(f'/Users/drewskikatana/hypergraze/TEST/TEST_RESULTS/{FILENAME}.{FILETYPE}')
-    # Insert into database
+
+    # Insert into database web_data
     INSERT_SCRIPT = 'insert into web_data (url, html_tag, file_type, results, bytes, date) values (%s, %s, %s, %s, %s, %s);'
     INSERT_VALUES = (URL, HTML_TAG, FILETYPE, str(results), bytes, datetime.datetime.now())
     CUR.execute(INSERT_SCRIPT, INSERT_VALUES)
+    print('web_data entered')
 
+    # Insert into database user_data
     INSERT_SCRIPT = 'insert into user_data (url, html_tag, file_type, files, bytes, date) values (%s, %s, %s, %s, %s, %s);'
     INSERT_VALUES = (URL, HTML_TAG, FILETYPE, count, bytes, datetime.datetime.now() )
     CUR.execute(INSERT_SCRIPT, INSERT_VALUES)
-
+    print('user_data entered')
 
     CONN.commit()
 
@@ -62,7 +67,6 @@ def get_html(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE, FINDALL):
     CUR.close()
     CONN.close()
 
-    print('user_data entered')
+    
 
 
-get_html('https://stackoverflow.com/questions/4383571/importing-files-from-different-folder','div', 'mt24', 'configworks', 'csv','yes')

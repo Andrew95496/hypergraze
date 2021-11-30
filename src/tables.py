@@ -14,6 +14,7 @@ from configs import config as cf
 
 
 
+
 def find_all_tables_to_excel(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
     CONN = psycopg2.connect(
             host = cf.hostname,
@@ -39,14 +40,17 @@ def find_all_tables_to_excel(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
         size = os.path.getsize(f'/Users/drewskikatana/hypergraze/TEST/TEST_RESULTS/{FILENAME}{count}.xlsx')
         bytes += size
         count += 1
-    #* Insert into database
+    #* Insert into database web_data
     INSERT_SCRIPT = 'insert into web_data (url, html_tag, file_type, results, bytes, date) values (%s, %s, %s, %s, %s, %s);'
     INSERT_VALUES = (URL, HTML_TAG, FILETYPE ,str(tables),bytes, datetime.datetime.now())
     CUR.execute(INSERT_SCRIPT, INSERT_VALUES)
+    print('web_data entered')
 
+    #* Insert into database web_data
     INSERT_SCRIPT = 'insert into user_data (url, html_tag, file_type, files, bytes, date) values (%s, %s, %s, %s, %s, %s);'
     INSERT_VALUES = (URL, HTML_TAG, FILETYPE, count, bytes, datetime.datetime.now() )
     CUR.execute(INSERT_SCRIPT, INSERT_VALUES)
+    print('user_data entered')
 
 
     CONN.commit()
@@ -55,7 +59,7 @@ def find_all_tables_to_excel(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
     CUR.close()
     CONN.close()
 
-    print('user_data entered')
+
 
 
 
@@ -88,10 +92,12 @@ def find_all_tables_to_std(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
     INSERT_SCRIPT = 'insert into web_data (url, html_tag, file_type, results, bytes, date) values (%s, %s, %s, %s, %s, %s);'
     INSERT_VALUES = (URL, HTML_TAG, FILETYPE, str(tables), bytes, datetime.datetime.now())
     CUR.execute(INSERT_SCRIPT, INSERT_VALUES)
+    print('web_data entered')
 
     INSERT_SCRIPT = 'insert into user_data (url, html_tag, file_type, files, bytes, date) values (%s, %s, %s, %s, %s, %s);'
     INSERT_VALUES = (URL, HTML_TAG, FILETYPE, count, bytes, datetime.datetime.now() )
     CUR.execute(INSERT_SCRIPT, INSERT_VALUES)
+    print('user_data entered')
 
 
     CONN.commit()
@@ -100,7 +106,8 @@ def find_all_tables_to_std(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
     CUR.close()
     CONN.close()
 
-    print('user_data entered')
+
+
 
 
 def find_one_table_to_std(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
@@ -130,10 +137,12 @@ def find_one_table_to_std(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
     INSERT_SCRIPT = 'insert into web_data (url, html_tag, file_type, results, bytes, date) values (%s, %s, %s, %s, %s, %s);'
     INSERT_VALUES = (URL, HTML_TAG, FILETYPE, str(table), bytes, datetime.datetime.now())
     CUR.execute(INSERT_SCRIPT, INSERT_VALUES)
+    print('web_data entered')
 
     INSERT_SCRIPT = 'insert into user_data (url, html_tag, file_type, files, bytes, date) values (%s, %s, %s, %s, %s, %s);'
     INSERT_VALUES = (URL, HTML_TAG, FILETYPE, count, bytes, datetime.datetime.now() )
     CUR.execute(INSERT_SCRIPT, INSERT_VALUES)
+    print('user_data entered')
 
 
     CONN.commit()
@@ -142,7 +151,9 @@ def find_one_table_to_std(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
     CUR.close()
     CONN.close()
 
-    print('user_data entered')
+
+
+
 
 def find_one_table_to_excel(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
     CONN = psycopg2.connect(
@@ -173,10 +184,12 @@ def find_one_table_to_excel(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
     INSERT_SCRIPT = 'insert into web_data (url, html_tag, file_type, results, bytes, date) values (%s, %s, %s, %s, %s, %s);'
     INSERT_VALUES = (URL, HTML_TAG, FILETYPE, str(table), bytes, datetime.datetime.now())
     CUR.execute(INSERT_SCRIPT, INSERT_VALUES)
+    print('web_data entered')
 
     INSERT_SCRIPT = 'insert into user_data (url, html_tag, file_type, files, bytes, date) values (%s, %s, %s, %s, %s, %s);'
     INSERT_VALUES = (URL, HTML_TAG, FILETYPE, count, bytes, datetime.datetime.now() )
     CUR.execute(INSERT_SCRIPT, INSERT_VALUES)
+    print('user_data entered')
 
 
     CONN.commit()
@@ -185,4 +198,4 @@ def find_one_table_to_excel(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
     CUR.close()
     CONN.close()
 
-    print('user_data entered')
+    

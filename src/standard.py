@@ -13,6 +13,8 @@ from configs import config as cf
 
 
 
+
+
 def get_std_data(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE, FINDALL):
     CONN = psycopg2.connect(
             host = cf.hostname,
@@ -48,10 +50,12 @@ def get_std_data(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE, FINDALL):
     INSERT_SCRIPT = 'insert into web_data (url, html_tag, file_type, results, bytes, date) values (%s, %s, %s, %s, %s, %s);'
     INSERT_VALUES = (URL, HTML_TAG, FILETYPE, str(results), bytes, datetime.datetime.now())
     CUR.execute(INSERT_SCRIPT, INSERT_VALUES)
+    print('web_data entered')
 
     INSERT_SCRIPT = 'insert into user_data (url, html_tag, file_type, files, bytes, date) values (%s, %s, %s, %s, %s, %s);'
     INSERT_VALUES = (URL, HTML_TAG, FILETYPE, count, bytes, datetime.datetime.now() )
     CUR.execute(INSERT_SCRIPT, INSERT_VALUES)
+    print('user_data entered')
 
 
     CONN.commit()

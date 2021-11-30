@@ -34,21 +34,27 @@
 
 # with open(f'/Users/drewskikatana/hypergraze/TEST/TEST_RESULTS/{FILENAME}.{FILETYPE}', 'w') as text_file:
 #     text_file.write(FILENAME)
-from bs4 import BeautifulSoup
-from numpy import byte
-import requests
-import psycopg2
-import pandas as pd
-import datetime
-import os
+# from bs4 import BeautifulSoup
+# from numpy import byte
+# import requests
+# import psycopg2
+# import pandas as pd
+# import datetime
+# import os
 
-URL = 'https://en.wikipedia.org/wiki/National_Football_League'
+# URL = 'https://en.wikipedia.org/wiki/National_Football_League'
 
-res = requests.get(URL)
-src = res.content
-html = BeautifulSoup(src, 'lxml')
-results = html.find( 'table', 'wikitable')
-print(results)
+# res = requests.get(URL)
+# src = res.content
+# html = BeautifulSoup(src, 'lxml')
+# results = html.find( 'table', 'wikitable')
+# print(results)
 
-with open(f'/Users/drewskikatana/hypergraze/TEST/TEST_RESULTS/nfl___________html.html', 'w') as text_file:
-    text_file.write(str(results))
+# with open(f'/Users/drewskikatana/hypergraze/TEST/TEST_RESULTS/nfl___________html.html', 'w') as text_file:
+#     text_file.write(str(results))
+
+
+
+# ! get_html('https://stackoverflow.com/questions/4383571/importing-files-from-different-folder','div', 'mt24', 'configworks', 'csv','yes')
+
+

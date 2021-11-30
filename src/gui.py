@@ -62,22 +62,46 @@ HTML_TAG_OPTIONS = [
 'span'
 ] 
 
+ATTR_OPTIONS = [
+'id',
+'class',
+'src',
+'href',
+'alt',
+'lang',
+'style',
+'title',
+] 
+
+
+
+
+
 _FILETYPE = StringVar(root)
 _FILETYPE.set(FILETYPE_OPTIONS[0]) 
 
 _HTML_TAG = StringVar(root)
 _HTML_TAG.set(HTML_TAG_OPTIONS[0]) 
 
+_ATTR = StringVar(root)
+_ATTR.set(ATTR_OPTIONS[0]) 
+
+
+
+
+
+
 URL = Entry(root, width=28)
 HTML_TAG = OptionMenu(root, _HTML_TAG, *HTML_TAG_OPTIONS)
-ATTR = Entry(root, width=28)
+ATTR = OptionMenu(root, _ATTR, *ATTR_OPTIONS)
 CLASS_NAME = Entry(root, width=28)
 FILENAME = Entry(root, width=28)
 FILETYPE = OptionMenu(root, _FILETYPE, *FILETYPE_OPTIONS)
 FINDALL = Entry(root, width=28)
 
 search = Button(root, text="Search",
-command=lambda: find_data(URL.get(), _HTML_TAG.get(), ATTR.get(),CLASS_NAME.get(), FILENAME.get(), _FILETYPE.get(), FINDALL.get()))
+command=lambda: find_data(URL.get(), _HTML_TAG.get(), _ATTR.get(),CLASS_NAME.get(), FILENAME.get(), _FILETYPE.get(), FINDALL.get()))
+
 
 
 
@@ -85,6 +109,7 @@ command=lambda: find_data(URL.get(), _HTML_TAG.get(), ATTR.get(),CLASS_NAME.get(
 
 URL.pack()
 HTML_TAG.pack()
+ATTR.pack()
 CLASS_NAME.pack()
 FILENAME.pack()
 FILETYPE.pack()
