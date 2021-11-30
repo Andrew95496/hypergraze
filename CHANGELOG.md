@@ -37,15 +37,23 @@ ___
     - write to .xlsx + others
 - ***ADDED*** a GUI
 - ARCH_FILE/ *(archived)*  ***ADDED***
-    - modules **contains** *URL_PARSER.py*
-    - src **contains** *main.py*
+    - modules/ **contains** *URL_PARSER.py*
+    - src/ **contains** *main.py*
     - *scrape.py*
     - *tab.py*
 - ***ADDED*** DATABASE/ for Postgres queries
 - ***ADDED*** website
 - ***ADDED*** a functions branch 
 
+## [v0.0.4-alpha] (Pre-release) 2021-11-30
 
+### Added or Changed
 
+- ***ADDED*** "Downloads" and "News" page to website
+- ***ADDED*** a [logo](https://user-images.githubusercontent.com/70408199/143919658-fd532ff3-240c-48db-9ab0-3b309e57a585.gif)
+- ***ADDED*** new src/ 
+- HTML is now a separate function
+- "bytes" column added to database
+- find_all broken into different functions
 
 

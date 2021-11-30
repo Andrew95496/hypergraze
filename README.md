@@ -27,6 +27,7 @@
 
 
 <!-- PROJECT LOGO -->
+<img style="text-align: center; margin-bottom: 30px;" src="../STATIC_MEDIA/LOGO_FILES/logo2.gif" alt="" />
 <br />
 <div align="center">
   <pre>
@@ -38,7 +39,6 @@
 #  .##.....##....##....##........##.......##....##..##....##..##....##..##.....##..##......##......
 #  .##.....##....##....##........########.##.....##..######...##.....##.##.....##.########.########
 </pre>
-
 <h3 align="center">Hyprergraze</h3>
 
   <p align="center">
