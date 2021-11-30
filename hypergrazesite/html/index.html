@@ -9,6 +9,17 @@
 #  .##.....##.##....##..##.......##..##..##.##....##.##...##...##.
 #  .########..##.....##.########..###..###...######..##....##.####
  -->
+
+<!--
+#  .##.....##.##....##.########..########.########...######...########.....###....########.########
+#  .##.....##..##..##..##.....##.##.......##.....##.##....##..##.....##...##.##........##..##......
+#  .##.....##...####...##.....##.##.......##.....##.##........##.....##..##...##......##...##......
+#  .#########....##....########..######...########..##...####.########..##.....##....##....######..
+#  .##.....##....##....##........##.......##...##...##....##..##...##...#########...##.....##......
+#  .##.....##....##....##........##.......##....##..##....##..##....##..##.....##..##......##......
+#  .##.....##....##....##........########.##.....##..######...##.....##.##.....##.########.########
+
+-->
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -159,11 +170,14 @@
     </section>
 
       <!-- download 1Page -->
-      <section id="download-sub-page" class="hide">
+      <section id="download-sub-page" class="">
         <h1 class="sub-card-header">Download Versions</h1>
         <p class="card-p" style="text-align: center">
           <ul class="download-versions">
-            <p ><img style="text-align: center; margin-bottom: 30px;" src="../STATIC_MEDIA/LOGO_FILES/logo-gif-transparent.gif" alt="" /></p>
+            <span onclick="slowGif()">
+            <p ><img id="1" class="hide" style="text-align: center; margin-bottom: 30px;;" src="../STATIC_MEDIA/LOGO_FILES/logo-slow-gif.gif" alt="" /></p>
+            <p ><img id="2" style="text-align: center; margin-bottom: 30px;;" src="../STATIC_MEDIA/LOGO_FILES/logo-gif-transparent.gif" alt="" /></p>
+          </span>
             <h4>Latest Version</h4>
             <a href="#"><li>v2.3.15</li></a> 
           <h5 class="older-versions-h5">Older Versions</h5>

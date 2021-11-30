@@ -11,11 +11,14 @@ const subPage3 = document.getElementById("sub-page-3")
 // ! link to about page
 const aboutPage = document.getElementById("about-page")
 
-// ! link to portfolio
+// ! link to download
 const downloadPage = document.getElementById("download-page")
 
-// ! link to portfolio sub page
+// ! link to download sub page
 const downloadSubPage = document.getElementById("download-sub-page")
+const logo1 = document.getElementById("1")
+const logo2 = document.getElementById("2")
+
 
 
 // ! link to contacts page
@@ -57,7 +60,7 @@ const goAbout = () => {
 }
 
 
-// Portfolio link
+// download link
 const goDownload = () => {
     downloadPage.classList.remove('hide')
 
@@ -116,8 +119,14 @@ const showPageThree = () => {
 }
 
 
-// Portfolio sub link
+// download sub link
 
 const showDownSub = () => {
     downloadSubPage.classList.toggle("hide")
+}
+
+const slowGif = () => {
+
+    logo1.classList.toggle("hide")
+    logo2.classList.toggle("hide")
 }
