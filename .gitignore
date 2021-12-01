@@ -38,6 +38,7 @@ configs/
 
 test/
 
+*.pyc
 
 ##other
 #node_modules/
