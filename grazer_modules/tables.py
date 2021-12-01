@@ -11,32 +11,30 @@ import datetime
 #  My Modules
 from configs import config as cf
 
-
-
-
-
-def find_all_tables_to_excel(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
-    CONN = psycopg2.connect(
+CONN = psycopg2.connect(
             host = cf.hostname,
             dbname = cf.database,
             user = cf.username,
             password = cf.pwd,
             port = cf.port_id)
-    CUR = CONN.cursor()
+CUR = CONN.cursor()
+print('(tables) database connected...')
 
 
+
+def find_all_tables_to_excel(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
     res = requests.get(URL)
     src = res.content
     html = BeautifulSoup(src, 'lxml')
 
     bytes = 0
-    count = 0
+    count = 1
 
     table = html.find_all('table', {'class': f'{ATTR_NAME}'})
     tables = pd.read_html(str(table))
     for table in tables:
         table = pd.DataFrame(table)
-        table.to_excel( f'/Users/drewskikatana/hypergraze/TEST/TEST_RESULTS/{FILENAME}{count}.xlsx' )
+        table.to_excel( f'/Users/drewskikatana/hypergraze/TEST/TEST_RESULTS/{FILENAME}{count}.xlsx')
         size = os.path.getsize(f'/Users/drewskikatana/hypergraze/TEST/TEST_RESULTS/{FILENAME}{count}.xlsx')
         bytes += size
         count += 1
@@ -52,27 +50,20 @@ def find_all_tables_to_excel(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
     CUR.execute(INSERT_SCRIPT, INSERT_VALUES)
     print('user_data entered')
 
-
     CONN.commit()
-
     # ! ALL WAYS CLOSE CONNECTIONS
     CUR.close()
     CONN.close()
+    print('(tables) database disconnected')
+
+
+
 
 
 
 
 
 def find_all_tables_to_std(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
-    CONN = psycopg2.connect(
-        host = cf.hostname,
-        dbname = cf.database,
-        user = cf.username,
-        password = cf.pwd,
-        port = cf.port_id)
-    CUR = CONN.cursor()
-
-
     res = requests.get(URL)
     src = res.content
     html = BeautifulSoup(src, 'lxml')
@@ -99,27 +90,17 @@ def find_all_tables_to_std(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
     CUR.execute(INSERT_SCRIPT, INSERT_VALUES)
     print('user_data entered')
 
-
     CONN.commit()
 
     # ! ALL WAYS CLOSE CONNECTIONS
     CUR.close()
     CONN.close()
-
+    print('(tables) database disconnected')
 
 
 
 
 def find_one_table_to_std(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
-    CONN = psycopg2.connect(
-        host = cf.hostname,
-        dbname = cf.database,
-        user = cf.username,
-        password = cf.pwd,
-        port = cf.port_id)
-    CUR = CONN.cursor()
-
-
     res = requests.get(URL)
     src = res.content
     html = BeautifulSoup(src, 'lxml')
@@ -144,28 +125,16 @@ def find_one_table_to_std(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
     CUR.execute(INSERT_SCRIPT, INSERT_VALUES)
     print('user_data entered')
 
-
     CONN.commit()
-
     # ! ALL WAYS CLOSE CONNECTIONS
     CUR.close()
     CONN.close()
-
+    print('(tables) database disconnected')
 
 
 
 
 def find_one_table_to_excel(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
-    CONN = psycopg2.connect(
-        host = cf.hostname,
-        dbname = cf.database,
-        user = cf.username,
-        password = cf.pwd,
-        port = cf.port_id)
-    CUR = CONN.cursor()
-    print('database connected...')
-
-
     res = requests.get(URL)
     src = res.content
     html = BeautifulSoup(src, 'lxml')
@@ -193,9 +162,9 @@ def find_one_table_to_excel(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
 
 
     CONN.commit()
-
+    
     # ! ALL WAYS CLOSE CONNECTIONS
     CUR.close()
     CONN.close()
+    print('(tables) database disconnected')
 
-    

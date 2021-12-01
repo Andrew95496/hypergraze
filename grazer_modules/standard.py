@@ -15,15 +15,18 @@ from configs import config as cf
 
 
 
+CONN = psycopg2.connect(
+        host = cf.hostname,
+        dbname = cf.database,
+        user = cf.username,
+        password = cf.pwd,
+        port = cf.port_id)
+CUR = CONN.cursor()
+print('(std) database connected...')
+
+
 def get_std_data(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE, FINDALL):
-    CONN = psycopg2.connect(
-            host = cf.hostname,
-            dbname = cf.database,
-            user = cf.username,
-            password = cf.pwd,
-            port = cf.port_id)
-    CUR = CONN.cursor()
-    print('database connected...')
+
     
 
     res = requests.get(URL)
@@ -59,9 +62,7 @@ def get_std_data(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE, FINDALL):
 
 
     CONN.commit()
-
     # ! ALL WAYS CLOSE CONNECTIONS
     CUR.close()
     CONN.close()
-
-    print('user_data entered')
+    print('(std) database disconnected')

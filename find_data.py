@@ -7,7 +7,7 @@ import datetime
 import os
 #  My Modules
 from configs import config as cf
-from regex import classname_exist
+from regex_modules.regex import classname_exist
 
 
 
