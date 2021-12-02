@@ -3,9 +3,11 @@
 *ignore .py links*
 
 ## [unreleased]
-- Advanced options
+- Advanced options - [v0.0.5-alpha]
 - Voice Recognition
 - send files to cloud
+
+___
 
 ## [v0.0.1](https://github.com/Andrew95496/hypergraze/tree/v0.0.1) (Pre-release) 2021-11-27
 
@@ -28,7 +30,9 @@ ___
 - excel file not longer corrupted
 - find_all for tables creates a file for each table
 
-## [v0.0.3-alpha] (Pre-release) 2021-11-29
+___
+
+## [v0.0.3-alpha](https://github.com/Andrew95496/hypergraze/releases/tag/v0.0.3) (Pre-release) 2021-11-29
 
 ### Added or Changed
 
@@ -45,7 +49,10 @@ ___
 - ***ADDED*** website
 - ***ADDED*** a functions branch 
 
-## [v0.0.4-alpha] (Pre-release) 2021-11-30
+___
+
+
+## [v0.0.4-alpha](https://github.com/Andrew95496/hypergraze/releases/tag/v0.0.4) (Pre-release) 2021-11-30
 
 ### Added or Changed
 
@@ -55,5 +62,17 @@ ___
 - HTML is now a separate function
 - "bytes" column added to database
 - find_all broken into different functions
+
+___
+
+## [v0.0.5-alpha] (Pre-release) 2021-11-30
+
+### Added or Changed
+
+- ***ADDED*** separate GUI for advanced and simple searches
+- ***ADDED*** an algorithm to find existing attribute names within the url using regex
+- ***ADDED*** separate folders for grazer_modules/ and regex_modules/
+- merged functions branch
+- ***ADDED*** autocorrect
 
 
