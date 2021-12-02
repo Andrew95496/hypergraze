@@ -42,7 +42,8 @@ HTML_TAG_OPTIONS = [
 'body',
 'title',
 'main',
-'section,'
+'section',
+'article',
 'h1',
 'h2',
 'h3',
@@ -59,7 +60,10 @@ HTML_TAG_OPTIONS = [
 'th',
 'tr',
 'td',
-'span'
+'span',
+'rel',
+'name',
+'content',
 ] 
 
 ATTR_OPTIONS = [

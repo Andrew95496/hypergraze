@@ -11,18 +11,19 @@ import datetime
 #  My Modules
 from configs import config as cf
 
-CONN = psycopg2.connect(
+
+
+
+
+def find_all_tables_to_excel(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
+    CONN = psycopg2.connect(
             host = cf.hostname,
             dbname = cf.database,
             user = cf.username,
             password = cf.pwd,
             port = cf.port_id)
-CUR = CONN.cursor()
-print('(tables) database connected...')
-
-
-
-def find_all_tables_to_excel(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
+    CUR = CONN.cursor()
+    print('(tables) database connected...')
     res = requests.get(URL)
     src = res.content
     html = BeautifulSoup(src, 'lxml')
@@ -64,6 +65,15 @@ def find_all_tables_to_excel(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
 
 
 def find_all_tables_to_std(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
+    CONN = psycopg2.connect(
+            host = cf.hostname,
+            dbname = cf.database,
+            user = cf.username,
+            password = cf.pwd,
+            port = cf.port_id)
+    CUR = CONN.cursor()
+    print('(tables) database connected...')
+
     res = requests.get(URL)
     src = res.content
     html = BeautifulSoup(src, 'lxml')
@@ -101,6 +111,14 @@ def find_all_tables_to_std(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
 
 
 def find_one_table_to_std(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
+    CONN = psycopg2.connect(
+            host = cf.hostname,
+            dbname = cf.database,
+            user = cf.username,
+            password = cf.pwd,
+            port = cf.port_id)
+    CUR = CONN.cursor()
+    print('(tables) database connected...')
     res = requests.get(URL)
     src = res.content
     html = BeautifulSoup(src, 'lxml')
@@ -135,6 +153,14 @@ def find_one_table_to_std(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
 
 
 def find_one_table_to_excel(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE):
+    CONN = psycopg2.connect(
+            host = cf.hostname,
+            dbname = cf.database,
+            user = cf.username,
+            password = cf.pwd,
+            port = cf.port_id)
+    CUR = CONN.cursor()
+    print('(tables) database connected...')
     res = requests.get(URL)
     src = res.content
     html = BeautifulSoup(src, 'lxml')

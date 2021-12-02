@@ -4,7 +4,7 @@ sys.path.append(os.path.dirname(os.path.abspath('grazer_modules')))
 sys.path.append(os.path.dirname(os.path.abspath('regex_modules')))
 
 #  My Modules
-from regex_modules import classname_exist
+from regex_modules import attr_name_exist
 from grazer_modules import get_html, get_std_data, find_all_tables_to_excel, find_one_table_to_std, find_all_tables_to_std, find_one_table_to_excel
 
 # DEFAULTS
@@ -25,7 +25,7 @@ def find_data(URL=url,
             FILETYPE=file_type,
             FINDALL=find_all):
 
-    if classname_exist(URL, ATTRIBUTE, ATTR_NAME):
+    if attr_name_exist(URL, ATTRIBUTE, ATTR_NAME):
         print('class found')
 
         # * SEARCHING, WRITING, AND DATABASING FILE
