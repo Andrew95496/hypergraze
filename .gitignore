@@ -38,6 +38,7 @@ configs/
 
 test/
 
+__pycache__/
 
 ##other
 #node_modules/

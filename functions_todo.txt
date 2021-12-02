@@ -1,0 +1,23 @@
+TODO
+---------------------------------------
+NEEDS WORK           | ø = OPTIONS + O |
+---------------------------------------
+CURRENTLY WORKING ON | ∆ = OPTIONS + J |
+---------------------------------------
+COMPLETED            | √ = OPTIONS + V |
+----------------------------------------
+
+- [2021-11-28] - Restructure Code ∆
+- [2021-11-28] - Add Regex ∆
+- [2021-11-28] - ERROR HANDLING ø
+- [2021-11-28] - ADD file type to databases √ - [2021-11-28]
+- [2021-11-28] - Send files to cloud ø
+- [2021-11-28] - Asynchronous code ø
+- [2021-11-28] - track file size √ - [2021-11-29]
+
+- [2021-11-29] - OFFER AS A CLI ø
+- [2021-11-29] - ADD COMMENTS IN find_data ø
+- [2021-11-29] - Use REGEX to parse through Attributes ∆
+- [2021-11-29] - turn find data into an object  √ - [2021-11-29] (created separate functions instead)
+
+- [2021-12-01] - fix check_attrname ∆ might have fixed gonna test more
