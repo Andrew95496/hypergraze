@@ -45,8 +45,10 @@ def get_std_data(URL,HTML_TAG, ATTR_NAME, FILENAME, FILETYPE, FINDALL):
         results = results.get_text()
     with open(f'{downloads_path}/{FILENAME}.{FILETYPE}', 'w') as text_file:
         text_file.write(str(results))
+        print(f'file sent to: {downloads_path}/{FILENAME}.{FILETYPE}')
         
     bytes = os.path.getsize(f'{downloads_path}/{FILENAME}.{FILETYPE}')
+    print(f'file size {bytes} bytes')
     # Insert into database
     INSERT_SCRIPT = 'insert into web_data (url, html_tag, file_type, results, bytes, date) values (%s, %s, %s, %s, %s, %s);'
     INSERT_VALUES = (URL, HTML_TAG, FILETYPE, str(results), bytes, datetime.datetime.now())

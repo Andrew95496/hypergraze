@@ -20,6 +20,9 @@ COMPLETED            | √ = OPTIONS + V |
 - [2021-11-29] - Use REGEX to parse through Attributes ∆
 - [2021-11-29] - turn find data into an object  √ - [2021-11-29] (created separate functions instead)
 
+- [2021-12-04] - ADD download path to modules
+- [2021-12-04] - ADD messagebox and notifications
+
 
 
 

@@ -4,19 +4,32 @@ from __TEST import find_data
 
 from tkinter import *
 from tkinter import ttk
+from ttkbootstrap import Style
+from PIL import Image, ImageTk
 
 
-# URL = input('Input URL: ')
-# HTML_TAG = input('Input an HTML Tag: ')
-# CLASS_NAME = input('Input an classname: ')
-# FILENAME = input('Input Filename: ')
-# FILETYPE = input('Input File type: ')
-# FINDALL = input('Find all occurrences?[yes/no]: ')
+
+#STYLES
+#colors
+main_color = '#FAF6F5'
+fire_red = '#C90E27'
+fire_rose = '#F2556A'
 
 
 root = Tk()
+style = Style(theme='journal')
 root.title('Hypergraze')
-root.state("zoomed")
+root.configure(background=f'{main_color}')
+root.geometry('400x350')
+root.resizable(width=0, height=0)
+
+Logo = Image.open('/Users/drewskikatana/hypergraze/hypergrazesite/STATIC_MEDIA/LOGO_FILES/main-logo-transparent.png')
+Logo = Logo.resize((100, 100), Image.ANTIALIAS)
+logo = ImageTk.PhotoImage(Logo)
+main_logo = Label(image=logo, bg='#FAF6F5')
+main_logo.place(x=5, y=250)
+
+
 
 #* DROPDOWN MENUS
 FILETYPE_OPTIONS = [
@@ -77,50 +90,60 @@ ATTR_OPTIONS = [
 'title',
 ] 
 
+main_title = Label(root, text="HYPERGRAZE", fg=f'{fire_rose}',bg=f'{main_color}', font=('Ariel', 20))
+main_title.pack()
+
+URL_label = Label(root, text='URL', fg=f'{fire_rose}',bg=f'{main_color}')
+URL_label.pack()
+URL = ttk.Entry(root, width=35)
+URL.pack()
 
 
-
-
-_FILETYPE = StringVar(root)
-_FILETYPE.set(FILETYPE_OPTIONS[0]) 
-
+HTML_label = Label(root, text='HTML TAG', fg=f'{fire_rose}',bg=f'{main_color}')
+HTML_label.place(x=97, y=75)
 _HTML_TAG = StringVar(root)
-_HTML_TAG.set(HTML_TAG_OPTIONS[0]) 
+_HTML_TAG.set(HTML_TAG_OPTIONS[0])
+HTML_TAG = ttk.OptionMenu(root, _HTML_TAG, *HTML_TAG_OPTIONS)
+HTML_TAG.config(width=5)
+HTML_TAG.place(x=88, y=90)
 
+
+ATTR_label = Label(root, text='ATTRIBUTE',  fg=f'{fire_rose}',bg=f'{main_color}')
+ATTR_label.place(x=243, y=75)
 _ATTR = StringVar(root)
 _ATTR.set(ATTR_OPTIONS[0]) 
+ATTR = ttk.OptionMenu(root, _ATTR, *ATTR_OPTIONS)
+ATTR.config(width=5)
+ATTR.place(x=233, y=90)
 
 
+ATTR_NAME_label = Label(root, text='ATTRIBUTE NAME', fg=f'{fire_rose}',bg=f'{main_color}')
+ATTR_NAME_label.place(x=150, y=120)
+ATTR_NAME = ttk.Entry(root, width=35)
+ATTR_NAME.place(x=88, y=140)
 
 
+FILENAME_label = Label(root, text='FILENAME & FILETYPE', fg=f'{fire_rose}',bg=f'{main_color}')
+FILENAME_label.place(x=138, y=170)
+FILENAME = ttk.Entry(root, width=25)
+FILENAME.place(x=88, y=190)
+
+_FILETYPE = StringVar(root)
+_FILETYPE.set(FILETYPE_OPTIONS[0])
+FILETYPE = ttk.OptionMenu(root, _FILETYPE, *FILETYPE_OPTIONS)
+FILETYPE.place(x=247, y=190)
 
 
-URL = Entry(root, width=28)
-HTML_TAG = OptionMenu(root, _HTML_TAG, *HTML_TAG_OPTIONS)
-ATTR = OptionMenu(root, _ATTR, *ATTR_OPTIONS)
-CLASS_NAME = Entry(root, width=28)
-FILENAME = Entry(root, width=28)
-FILETYPE = OptionMenu(root, _FILETYPE, *FILETYPE_OPTIONS)
-FINDALL = Entry(root, width=28)
+FINDALL_label = Label(root, text='FINDALL [yes/no]', fg=f'{fire_rose}',bg=f'{main_color}')
+FINDALL_label.place(x=150, y=215)
+FINDALL = ttk.Entry(root, width=35)
+FINDALL.place(x=88, y=235)
 
-search = Button(root, text="Search",
-command=lambda: find_data(URL.get(), _HTML_TAG.get(), _ATTR.get(),CLASS_NAME.get(), FILENAME.get(), _FILETYPE.get(), FINDALL.get()))
+search = ttk.Button(root, text="Graze",
+command=lambda: find_data(URL.get(), _HTML_TAG.get(), _ATTR.get(), ATTR_NAME.get(), FILENAME.get(), _FILETYPE.get(), FINDALL.get()))
+search.place(x=170, y=270)
 
-
-
-
-
-
-URL.pack()
-HTML_TAG.pack()
-ATTR.pack()
-CLASS_NAME.pack()
-FILENAME.pack()
-FILETYPE.pack()
-FINDALL.pack()
-search.pack()
-
-ttk.Button(text="Quit", command=root.destroy).pack()
+ttk.Button(text="Quit", command=root.destroy).place(x=325, y=300)
 
 
 root.mainloop()
