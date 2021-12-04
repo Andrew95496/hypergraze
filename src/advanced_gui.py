@@ -1,5 +1,5 @@
 # from find_data import find_data
-from __TEST import find_data
+from find_data import find_data
 
 
 from tkinter import *
@@ -28,7 +28,6 @@ Logo = Logo.resize((100, 100), Image.ANTIALIAS)
 logo = ImageTk.PhotoImage(Logo)
 main_logo = Label(image=logo, bg='#FAF6F5')
 main_logo.place(x=5, y=250)
-
 
 
 #* DROPDOWN MENUS
@@ -144,6 +143,5 @@ command=lambda: find_data(URL.get(), _HTML_TAG.get(), _ATTR.get(), ATTR_NAME.get
 search.place(x=170, y=270)
 
 ttk.Button(text="Quit", command=root.destroy).place(x=325, y=300)
-
 
 root.mainloop()

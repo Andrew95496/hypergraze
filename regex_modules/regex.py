@@ -5,12 +5,11 @@ sys.path.append(os.path.dirname(os.path.abspath('regex_modules/spellcheck.py')))
 import re
 from bs4 import BeautifulSoup
 import requests
+from tkinter import messagebox as mb
 
 # My modules
 from configs import bcolors as b
 from regex_modules import spell_check, split_LINK, split_ATTR
-
-
 
 
 
@@ -32,21 +31,16 @@ def attr_name_exist(URL, ATTR,USER_INPUT):
             if (ATTR == 'src') or (ATTR == 'href'):
                 USER_REGEX = re.compile(f'\s{ATTR}{LINK}')
                 METACHAR = USER_REGEX.findall(str(html)) 
-                print(f'{b.WARNING}ATTRIBUTE NAME NOT FOUND{b.ENDC}')       
-                print(f'{b.BOLD}{b.FAIL}Suggestions:\n{b.ENDC}{b.ENDC}{b.OKCYAN}{split_LINK(set(METACHAR))}{b.ENDC}')
-                print(ATTR + LINK)
+                mb.showerror('ATTRIBUTE NAME NOT FOUND', f'Suggestions:\n{split_LINK(set(METACHAR))}')
                 return False
             else:
                 USER_REGEX = re.compile(f'\s{ATTR}{FIND}')
                 METACHAR = USER_REGEX.findall(str(html)) 
-                print(f'{b.WARNING}ATTRIBUTE NAME NOT FOUND{b.ENDC}')       
-                print(f'{b.BOLD}{b.FAIL}Suggestions:\n{b.ENDC}{b.ENDC}{b.OKCYAN}{split_ATTR(set(METACHAR))}{b.ENDC}')
-                print(ATTR + LINK)
+                mb.showerror('ATTRIBUTE NAME NOT FOUND', f'Suggestions:\n{split_ATTR(set(METACHAR))}')
                 return False
         return True
 
 
 # ? https://docs.python.org/3/library/re.html
 # ? https://github.com/filyp/autocorrect
-
 

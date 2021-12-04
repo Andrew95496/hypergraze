@@ -1,5 +1,5 @@
 # from find_data import find_data
-from __TEST import find_data
+from find_data import find_data
 
 
 from tkinter import *
@@ -105,7 +105,6 @@ FINDALL = Entry(root, width=28)
 
 search = Button(root, text="Search",
 command=lambda: find_data(URL.get(), _HTML_TAG.get(), _ATTR.get(),CLASS_NAME.get(), FILENAME.get(), _FILETYPE.get(), FINDALL.get()))
-
 
 
 
