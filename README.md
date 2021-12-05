@@ -36,7 +36,7 @@
     <a href="https://github.com/Andrew95496/hypergraze"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Andrew95496/hypergraze">View Demo</a>
+    <a href="https://youtu.be/44E0cU16y3o">View Demo</a>
     ·
     <a href="https://github.com/Andrew95496/hypergraze/issues">Report Bug</a>
     ·
@@ -76,6 +76,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+<p align="center" ><img width="466" alt="GUI" src="https://user-images.githubusercontent.com/70408199/144723954-5c7b1e4b-602d-4606-94c6-e9b08b613a79.png"></p>
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
@@ -151,7 +152,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 
-<p align="right">(<a href="#top">back to top</a>)</p> --> -->
+<p align="right">(<a href="#top">back to top</a>)</p> --> 
 
 
 

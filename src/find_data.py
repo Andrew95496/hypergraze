@@ -1,12 +1,13 @@
 import sys
 import os
 from tkinter import messagebox as mb
+import subprocess
 
 
 #  My Modules
 sys.path.append(os.path.dirname(os.path.abspath('grazer_modules')))
 sys.path.append(os.path.dirname(os.path.abspath('regex_modules')))
-from regex_modules import attr_name_exist, notify
+from regex_modules import attr_name_exist
 from grazer_modules import get_html, get_std_data, find_all_tables_to_excel, find_one_table_to_std, find_all_tables_to_std, find_one_table_to_excel
 
 # DEFAULTS
@@ -18,6 +19,14 @@ file_name = 'creator_contacts'
 file_type = 'html'
 find_all = 'no'
 
+CMD = '''
+on run argv
+  display notification (item 2 of argv) with title (item 1 of argv)
+end run
+'''
+
+def notify(title, text):
+  subprocess.call(['osascript', '-e', CMD, title, text])
 
 def find_data(URL=url,
             HTML_TAG=tag,
@@ -28,7 +37,7 @@ def find_data(URL=url,
             FINDALL=find_all):
 
     if attr_name_exist(URL, ATTRIBUTE, ATTR_NAME):
-        notify('ATTRIBUTE NAME FOUND!')
+        notify('HYPERGRAZE©', 'ATTRIBUTE NAME FOUND!')
 
         # * SEARCHING, WRITING, AND DATABASING FILE
         if FILETYPE == 'html':
@@ -58,6 +67,6 @@ def find_data(URL=url,
                 find_one_table_to_excel(
                     URL, HTML_TAG, ATTR_NAME, FILENAME, FILETYPE)
     else:
-        notify('ATTRIBUTE NAME ERROR: attribute name not found!')
+        notify('HYPERGRAZE©', 'ATTRIBUTE NAME ERROR: attribute name not found!')
 
     # * Insert user input into database
