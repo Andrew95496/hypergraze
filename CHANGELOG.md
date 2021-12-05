@@ -3,7 +3,6 @@
 *ignore .py links*
 
 ## [unreleased]
-- Advanced options - [v0.0.5-alpha]
 - Voice Recognition
 - send files to cloud
 
@@ -65,7 +64,7 @@ ___
 
 ___
 
-## [v0.0.5-alpha] (Pre-release) 2021-11-30
+## [v0.0.5-alpha](https://github.com/Andrew95496/hypergraze/releases/tag/v0.0.5) (Pre-release) 2021-11-30
 
 ### Added or Changed
 
@@ -74,5 +73,15 @@ ___
 - ***ADDED*** separate folders for grazer_modules/ and regex_modules/
 - merged functions branch
 - ***ADDED*** autocorrect
+___
+
+## [v0.0.6-alpha] (Pre-release) 2021-12-04
+
+### Added or Changed
+
+- Completed GUI
+- ***FIXED*** regex functions
+- ***ADDED*** messagebox and notifications
+
 
 

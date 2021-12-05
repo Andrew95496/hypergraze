@@ -6,14 +6,8 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
-
+<h1 align="center" >HYPERGRAZE</h1>
 
 <!-- PROJECT LOGO -->
 <p align="center" ><img style="text-align: center; margin-bottom: 30px;" src="https://user-images.githubusercontent.com/70408199/144077698-ec289091-f843-4011-9abd-789ae1503c6d.gif" alt="" /></p>
@@ -76,7 +70,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-<p align="center" ><img width="466" alt="GUI" src="https://user-images.githubusercontent.com/70408199/144723954-5c7b1e4b-602d-4606-94c6-e9b08b613a79.png"></p>
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
@@ -96,47 +89,52 @@ Here at HYPERGRAZE© we believe data should be easy to obtain and available to a
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
-<!-- GETTING STARTED -->
-<!-- ## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-
-<p align="right">(<a href="#top">back to top</a>)</p> -->
-
-
-
 <!-- USAGE EXAMPLES -->
-<!-- ## Usage
+## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Hypergraze is useful for getting different types of public data you need of your desired website.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+<img width="423" alt="wiki_url" src="https://user-images.githubusercontent.com/70408199/144729858-44547679-87dd-4946-97f1-c2ecc71d367a.png">
+
+- copy and paste the url you want information from
+
+<img width="984" alt="python_wikitable" src="https://user-images.githubusercontent.com/70408199/144729940-52095e2e-84fd-415e-9e1e-7a8dc195a9af.png">
+
+- find the data you want
+
+<img width="381" alt="inspect" src="https://user-images.githubusercontent.com/70408199/144729949-ab15f5cb-ec8c-4acf-9b21-4ee0a8566c56.png">
+
+- inspect the data
+
+<img width="456" alt="inpect_mode_full" src="https://user-images.githubusercontent.com/70408199/144730001-a9c3210a-e0a8-48f2-80e2-e2c2a5284a81.png">
+
+- look for the html tag, attribute, and attribute name
+
+<img width="1051" alt="highlighted" src="https://user-images.githubusercontent.com/70408199/144730020-8d033f5c-ae83-4f03-9497-6b0ed1a45ac6.png">
+
+- if you are not sure which one to pick. The browser should have highlighted the the section you inspected
+
+<img width="473" alt="filled_gui" src="https://user-images.githubusercontent.com/70408199/144730128-68824832-0206-48c1-891b-cd9fe43cd7a7.png">
+
+- Go back and fill the form with the information you just gathered
+
+<img width="314" alt="download_message_box" src="https://user-images.githubusercontent.com/70408199/144730175-82efedc1-d8cb-4e19-a119-0a0c9c7b0aac.png">
+
+- A messagebox of the path and file size will be shown
+
+<img width="384" alt="notify" src="https://user-images.githubusercontent.com/70408199/144730221-82792318-5d54-4bc4-8717-4f622b7a2afd.png">
+
+- Hypergraze will also send you notifications
+
+<img width="157" alt="file_in_folder" src="https://user-images.githubusercontent.com/70408199/144730238-fc9d40f6-d926-4119-8aaf-fc53b09845f3.png">
+
+- You can find the file in the appropriate folder
+
+<img width="562" alt="xlsx_table" src="https://user-images.githubusercontent.com/70408199/144730256-1d0e7281-c8fd-4315-816a-622d515616e2.png">
+
+- a view of the file downloaded
+
+_For video examples, please refer to the [Youtube](https://youtu.be/44E0cU16y3o)_
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -170,7 +168,7 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#top">back to top</a>)</p> -->
+<p align="right">(<a href="#top">back to top</a>)</p> 
 
 
 
@@ -204,21 +202,4 @@ Project Link: [https://github.com/Andrew95496/hypergraze](https://github.com/And
 <p align="right">(<a href="#top">back to top</a>)</p> -->
 
 
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/Andrew95496/hypergraze
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
-=======
 
