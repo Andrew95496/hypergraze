@@ -14,6 +14,24 @@
     bottom: 55px;
 }
 
-#about-page p {
-    margin: 30px 360px;
+.header_p{
+    margin-bottom: 30px;
+}
+
+.news_heading{
+    text-align: center;
+}
+
+
+.news_section{
+    background: rgba(221, 221, 221, 0.24);
+    padding: 10px;
+    margin-bottom: 25px;
+    box-shadow: 2px 2px 12px rgb(155, 155, 155);
+    margin: 25px 450px;
+    
+}
+
+.news_section:hover{
+    background-color: rgba(156, 156, 156, 0.041);
 }
