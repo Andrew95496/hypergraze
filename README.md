@@ -8,6 +8,11 @@
 -->
 
 <h1 align="center" >HYPERGRAZE</h1>
+<p align="center" >Mac OS</p1>
+
+
+
+
 
 <!-- PROJECT LOGO -->
 <p align="center" ><img style="text-align: center; margin-bottom: 30px;" src="https://user-images.githubusercontent.com/70408199/144077698-ec289091-f843-4011-9abd-789ae1503c6d.gif" alt="" /></p>
