@@ -12,8 +12,6 @@ from configs import bcolors as b
 from regex_modules import spell_check, split_LINK, split_ATTR
 
 
-
-
 def attr_name_exist(URL, ATTR,USER_INPUT):
     if spell_check(USER_INPUT):
         FIND = '="\w{0,1000}-*/*\w{0,1000}"'
